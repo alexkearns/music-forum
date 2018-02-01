@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Package Routes
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

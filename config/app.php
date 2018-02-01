@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Music Forum'),
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         /*
          * Application Service Providers...
          */
