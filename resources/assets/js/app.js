@@ -1,2 +1,2 @@
 require('./bootstrap');
-require('materialize-css');
+require('bootstrap');
