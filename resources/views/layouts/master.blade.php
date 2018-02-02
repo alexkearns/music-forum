@@ -12,7 +12,7 @@
     <body>
         @auth
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="{{ env('APP_URL') }}">{{ config('app.name') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,6 +36,8 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ \Auth::user()->name }}</a>
                             <div class="dropdown-menu" aria-labelledby="profileDropdown">
