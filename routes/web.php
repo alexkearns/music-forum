@@ -12,6 +12,9 @@
 */
 
 // Non Logged In Application Routes
+Route::get('/', function () {
+    return view('landing');
+});
 
 // Logged In Application Routes
 Route::middleware(['auth'])->group(function () {
