@@ -15,7 +15,7 @@
 
 // Logged In Application Routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'HomeController@index')->name('welcome');
+    Route::get('/home', 'HomeController@index')->name('home');
 });
 
 // Authentication Routes
