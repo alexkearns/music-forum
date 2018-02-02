@@ -9,8 +9,13 @@
 
                 <div class="panel-body">
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-info">
                             {{ session('status') }}
+                        </div>
+                    @endif
+                    @if ($errors->has('email'))
+                        <div class="alert alert-info">
+                               {{ $errors->first('email') }}
                         </div>
                     @endif
 
@@ -22,12 +27,6 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
                             </div>
                         </div>
 

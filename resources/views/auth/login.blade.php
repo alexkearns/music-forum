@@ -87,31 +87,42 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-4 offset-md-4">
+            <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
                             <div class="text-center mb-4">
-                                <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+                                <h1 class="display-4">Log In</h1>
+                            </div>
+
+                            @if ($errors->has('email'))
+                                <div class="alert alert-danger" role="alert">
+                                    <small>{{ $errors->first('email') }}</small>
+                                </div>
+                            @endif
+
+                            <div class="form-label-group">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}"required autofocus>
+                                <label for="email">Email address</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                <label for="inputEmail">Email address</label>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                                <label for="password">Password</label>
                             </div>
 
-                            <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                <label for="inputPassword">Password</label>
-                            </div>
-
-                            <div class="checkbox mb-3">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> Remember me
+                            <div class="form-check mb-3">
+                                <input {{ old('remember') ? 'checked' : '' }} class="form-check-input" type="checkbox" value="" id="remember" name="remember">
+                                <label class="form-check-label" for="remember">
+                                    Remember me
                                 </label>
                             </div>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
                         </form>
+                        <a class="mt-1 btn btn-sm btn-light btn-block" href="{{ route('password.request') }}">Forgot your password?</a>
+                        <a class="mt-4 btn btn-lg btn-secondary btn-block" href="{{ route('register') }}">Haven't got an account?</a>
                     </div>
                 </div>
             </div>

@@ -12,13 +12,10 @@
 */
 
 // Non Logged In Application Routes
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Logged In Application Routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/welcome', 'HomeController@index')->name('welcome');
+    Route::get('/', 'HomeController@index')->name('welcome');
 });
 
 // Authentication Routes

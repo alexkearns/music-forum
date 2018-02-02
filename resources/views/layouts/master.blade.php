@@ -36,11 +36,16 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ \Auth::user()->name }}</a>
+                            <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <form id="logout" action="{{ route('logout') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit();">Logout</a>
+                                </form>
+                            </div>
+                        </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
                 </div>
             </nav>
         @endauth
