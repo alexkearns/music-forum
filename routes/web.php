@@ -42,7 +42,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/thread/post/new', 'HomeController@saveNewPost')->name('saveNewPost');
     
     // Manage User Routes
-    Route::get('/manage', 'HomeController@manage')->name('manage');
+    Route::middleware(['can:manage-users'])->group(function () {
+        Route::get('/manage', 'ManageUsersController@index')->name('manage-users');
+    });
 });
 
 // Package Routes

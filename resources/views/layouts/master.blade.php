@@ -27,8 +27,7 @@
                 </li>
                 @can('manage-users')
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('manage') }}">Manage users <span
-                                    class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('manage-users') }}">Manage Users</a>
                     </li>
                 @endcan
             </ul>
