@@ -23,6 +23,11 @@
             <label for="password">Password</label>
         </div>
 
+        <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+            <label class="form-check-label" for="remember">Remember me</label>
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
     </form>
     <a class="mt-1 btn btn-sm btn-light btn-block" href="{{ route('password.request') }}">Forgot your password?</a>

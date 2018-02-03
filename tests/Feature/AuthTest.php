@@ -11,7 +11,7 @@ class AuthTest extends TestCase
 	use DatabaseMigrations;
 
 	/** @test */
-	public function can_login_when_authenticated()
+	public function can_access_when_authenticated()
 	{
 		$user = factory(User::class)->create();
 		$response = $this->actingAs($user)
@@ -21,7 +21,7 @@ class AuthTest extends TestCase
 	}
 
 	/** @test */
-	public function cannot_login_when_not_authenticated()
+	public function cannot_access_when_not_authenticated()
 	{
 		$response = $this->get('/home');
 
