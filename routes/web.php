@@ -42,8 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/thread/post/new', 'HomeController@saveNewPost')->name('saveNewPost');
     
     // Manage User Routes
-    Route::middleware(['can:manage-users'])->group(function () {
-        Route::get('/manage', 'ManageUsersController@index')->name('manage-users');
+    Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {
+        Route::get('/', 'ManageUsersController@index')->name('manage-users');
     });
 });
 
