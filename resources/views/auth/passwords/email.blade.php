@@ -1,4 +1,5 @@
 @extends('layouts.auth')
+
 @section('card-content')
     <div class="text-center mb-4">
         <h1 class="display-4">Reset Password</h1>

@@ -1,5 +1,6 @@
 <!-- Reference: https://getbootstrap.com/docs/4.0/examples/floating-labels/ -->
 @extends('layouts.master')
+
 @section('styles')
     <style>
         :root {
@@ -84,6 +85,7 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="container">
         <div class="row">
