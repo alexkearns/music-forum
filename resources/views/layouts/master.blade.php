@@ -8,6 +8,7 @@
         
         <!-- Styles -->
         <link href="{{url('css/app.css')}}" rel="stylesheet" type="text/css">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         @yield('styles')
     </head>
 
@@ -45,7 +46,11 @@
             </nav>
         @endauth
 
-        @yield('content')
+        <main role="main" class="container">
+            @include('flash::message')
+            @yield('content')
+        </main>
+        
 
         <!-- Scripts -->
         <script src="{{url('js/app.js')}}"></script>

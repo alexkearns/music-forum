@@ -34,7 +34,12 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 // Logged In Application Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    
+    // Thread Routes
     Route::get('/thread/{thread}', 'HomeController@showThreadPosts')->name('thread');
+		Route::post('/thread/post/new', 'HomeController@newPost')->name('newPost');
+    
+    // Manage User Routes
     Route::get('/manage', 'HomeController@manage')->name('manage');
 });
 
