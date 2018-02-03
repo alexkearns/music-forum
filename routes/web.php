@@ -45,6 +45,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage', 'HomeController@manage')->name('manage');
 });
 
-
 // Package Routes
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
