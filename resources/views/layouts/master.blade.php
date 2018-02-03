@@ -5,14 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ env('APP_NAME') }}</title>
+        
         <!-- Styles -->
         <link href="{{url('css/app.css')}}" rel="stylesheet" type="text/css">
         @yield('styles')
     </head>
+
     <body>
         @auth
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <a class="navbar-brand" href="{{ env('APP_URL') }}">{{ config('app.name') }}</a>
+                <a class="navbar-brand" href="/home">{{ config('app.name') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -20,21 +22,12 @@
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+
+                        {{-- IF ROLE IS ADMIN --}}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/manage">Manage users <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -51,7 +44,9 @@
                 </div>
             </nav>
         @endauth
+
         @yield('content')
+
         <!-- Scripts -->
         <script src="{{url('js/app.js')}}"></script>
     </body>
