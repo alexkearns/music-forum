@@ -20,11 +20,11 @@
 
 		            <tbody>
 					    <tr>
-							<th scope="row">
-								{{ $thread->title }}<br>
+							<th scope="row"><a class="text-dark" href="{{ route('thread', $thread->id)}}">{{ $thread->title }}</a></th>
+							<td>
+								{{ $thread->getUser()->name}}<br>
 								<small class="text-muted">{{ $thread->created_at }}</small>
-							</th>
-							<td>{{ $thread->getUser()->name}}</td>
+							</td>
 							<td>{{ $thread->getPosts()->count() }}</td>
 							<td>
 								{{ $thread->getRecentPost()->getUser()->name }}<br>

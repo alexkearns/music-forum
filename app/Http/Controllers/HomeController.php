@@ -32,6 +32,19 @@ class HomeController extends Controller
     }
 
     /**
+     * Show a specific threads posts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showThreadPosts(Thread $thread)
+    {
+        $user = Auth::user();
+        $posts = $thread->getPosts();
+
+        return view('thread', compact('user', 'thread', 'posts'));
+    }
+
+    /**
      * Show the manage user page.
      *
      * @return \Illuminate\Http\Response

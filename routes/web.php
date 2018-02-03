@@ -16,12 +16,6 @@ Route::get('/', function () {
     return view('landing');
 });
 
-// Logged In Application Routes
-Route::middleware(['auth'])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/manage', 'HomeController@manage')->name('manage');
-});
-
 // Authentication Routes
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 $this->post('login', 'Auth\LoginController@login');
@@ -36,6 +30,14 @@ $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+// Logged In Application Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/thread/{thread}', 'HomeController@showThreadPosts')->name('thread');
+    Route::get('/manage', 'HomeController@manage')->name('manage');
+});
+
 
 // Package Routes
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
