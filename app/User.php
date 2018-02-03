@@ -7,11 +7,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Post;
 use App\Thread;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use HasRolesAndAbilities;
+    
     /**
      * The attributes that are mass assignable.
      *
