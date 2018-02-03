@@ -5,6 +5,8 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
+use App\Thread;
+use App\Post;
 
 class UserTest extends TestCase
 {
@@ -18,5 +20,20 @@ class UserTest extends TestCase
         $this->assertNotNull($user->email);
         $this->assertNotNull($user->name);
         $this->assertNotNull($user->password);
+    }
+
+    /** @test */
+    public function can_get_the_threads_and_posts_for_a_user()
+    {
+        $user = factory(User::class)->create();
+        $threads = factory(Thread::class, 5)->create([
+            'user_id' => $user->id,
+        ]);
+        $posts = factory(Post::class, 5)->create([
+            'user_id' => $user->id,
+        ]);
+
+        $this->assertEquals($user->getThreads()->count(), 5);
+        $this->assertEquals($user->getPosts()->count(), 5);
     }
 }

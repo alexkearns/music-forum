@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
-        'conent' => 'Test Post',
+        'content' => 'Test Post',
         'thread_id' => 1,
         'user_id' => 1,
     ];

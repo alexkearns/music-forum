@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

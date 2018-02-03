@@ -8,23 +8,23 @@ use App\User;
 
 class AuthTest extends TestCase
 {
-	use DatabaseMigrations;
+    use DatabaseMigrations;
 
-	/** @test */
-	public function can_access_when_authenticated()
-	{
-		$user = factory(User::class)->create();
-		$response = $this->actingAs($user)
-						 ->get('/home');
+    /** @test */
+    public function can_access_when_authenticated()
+    {
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)
+            ->get('/home');
 
-		$response->assertStatus(200);
-	}
+        $response->assertStatus(200);
+    }
 
-	/** @test */
-	public function cannot_access_when_not_authenticated()
-	{
-		$response = $this->get('/home');
+    /** @test */
+    public function cannot_access_when_not_authenticated()
+    {
+        $response = $this->get('/home');
 
-		$response->assertStatus(302);
-	}
+        $response->assertStatus(302);
+    }
 }
