@@ -33,7 +33,7 @@ class UserTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-       	$this->assertEquals($user->getThreads()->count(), 5);
-       	$this->assertEquals($user->getPosts()->count(), 5);
+        $this->assertEquals($user->getThreads()->count(), 5);
+        $this->assertEquals($user->getPosts()->count(), 5);
     }
 }

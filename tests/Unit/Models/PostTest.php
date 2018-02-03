@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Post;
-use App\User;
 use App\Thread;
+use App\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {
@@ -25,14 +25,14 @@ class PostTest extends TestCase
     /** @test */
     public function can_get_the_user_and_thread_for_a_post()
     {
-		$user = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $thread = factory(Thread::class)->create();
         $post = factory(Post::class)->create([
             'thread_id' => $thread->id,
-            'user_id' =>$user->id
+            'user_id' => $user->id
         ]);
 
-       	$this->assertEquals($post->getUser()->id, $user->id);
-       	$this->assertEquals($post->getThread()->id, $thread->id);
+        $this->assertEquals($post->getUser()->id, $user->id);
+        $this->assertEquals($post->getThread()->id, $thread->id);
     }
 }

@@ -19,7 +19,8 @@
         <input type="hidden" name="token" value="{{ $token }}">
 
         <div class="form-label-group">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+                   value="{{ old('email') }}" required>
             <label for="email">Email address</label>
         </div>
 
@@ -29,7 +30,8 @@
         </div>
 
         <div class="form-label-group">
-            <input type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder="Confirm password" required>
+            <input type="password" id="password-confirm" name="password_confirmation" class="form-control"
+                   placeholder="Confirm password" required>
             <label for="password-confirm">Confirm password</label>
         </div>
 

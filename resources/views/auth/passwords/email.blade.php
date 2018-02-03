@@ -12,7 +12,7 @@
     @endif
     @if ($errors->has('email'))
         <div class="alert alert-info">
-               {{ $errors->first('email') }}
+            {{ $errors->first('email') }}
         </div>
     @endif
 
@@ -20,7 +20,8 @@
         {{ csrf_field() }}
 
         <div class="form-label-group">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required autofocus>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+                   value="{{ old('email') }}" required autofocus>
             <label for="email">Email address</label>
         </div>
 

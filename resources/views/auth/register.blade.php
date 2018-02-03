@@ -16,12 +16,14 @@
         @endif
 
         <div class="form-label-group">
-            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}" required autofocus>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}"
+                   required autofocus>
             <label for="name">Name</label>
         </div>
 
         <div class="form-label-group">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+                   value="{{ old('email') }}" required>
             <label for="email">Email address</label>
         </div>
 

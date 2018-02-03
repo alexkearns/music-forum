@@ -29,7 +29,7 @@ class ThreadTest extends TestCase
             'thread_id' => $thread->id,
         ]);
 
-       	$this->assertEquals($thread->getPosts()->count(), 5);
+        $this->assertEquals($thread->getPosts()->count(), 5);
     }
 
     /** @test */
@@ -46,6 +46,6 @@ class ThreadTest extends TestCase
             'created_at' => Carbon::now()->addSeconds(2), // Creates both results at same time otherwise
         ]);
 
-       	$this->assertEquals($thread->getRecentPost()->id, $newPost->id);
+        $this->assertEquals($thread->getRecentPost()->id, $newPost->id);
     }
 }
