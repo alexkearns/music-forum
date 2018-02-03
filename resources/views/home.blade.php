@@ -5,6 +5,10 @@
         <h1>Welcome back {{ explode(' ',$user->name)[0] }}!</h1>
         <p class="lead">Create threads and posts about the LCR below!</p>
 
+        <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
+        	<i class="fas fa-plus"></i> New Thread
+        </a>
+
 		<table class="table">
 		 	<thead class="thead-dark">
 		    	<tr>
@@ -16,7 +20,6 @@
 		  	</thead>
 
         	@foreach($threads as $thread)
-
 	            <tbody>
 				    <tr>
 						<th scope="row"><a class="text-dark" href="{{ route('thread', $thread->id)}}">{{ $thread->title }}</a></th>
@@ -25,10 +28,14 @@
 							<small class="text-muted">{{ $thread->created_at }}</small>
 						</td>
 						<td>{{ $thread->getPosts()->count() }}</td>
-						<td>
-							{{ $thread->getRecentPost()->getUser()->name }}<br>
-							<small class="text-muted">{{ $thread->getRecentPost()->created_at }}</small>
-						</td>
+						@if ($thread->getRecentPost())
+							<td>
+								{{ $thread->getRecentPost()->getUser()->name }}<br>
+								<small class="text-muted">{{ $thread->getRecentPost()->created_at }}</small>
+							</td>
+						@else
+							<td>No Posts</td>
+						@endif
 				    </tr>
 				</tbody>
 			@endforeach

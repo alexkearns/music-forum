@@ -50,7 +50,6 @@
             @include('flash::message')
             @yield('content')
         </main>
-        
 
         <!-- Scripts -->
         <script src="{{url('js/app.js')}}"></script>

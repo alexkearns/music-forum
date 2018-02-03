@@ -3,9 +3,7 @@
 @section('content')
     <div>
         <h1>
-            <a href={{ route('home') }} >
-                <i class="fas fa-arrow-alt-circle-left text-dark"></i>
-            </a>
+            <a href={{ route('home') }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
             {{ $thread->title }}
         </h1>
 
@@ -33,7 +31,7 @@
 			</div>
         @endforeach
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('newPost') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('saveNewPost') }}">
             {{ csrf_field() }}
 
             <div class="row">

@@ -33,6 +33,42 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the new thread form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showNewThreadForm()
+    {
+        $user = Auth::user();
+
+        return view('new_thread', compact('user'));
+    }
+
+    /**
+     * Save a newly created thread.
+     *
+     * @return Redirect
+     */
+    public function saveNewThread(Request $request)
+    {
+        $user = Auth::user();
+        $threads = Thread::all();
+
+        $this->validate($request, [
+            'title' => ['required', 'max:64'],
+        ]);
+
+        Thread::create([
+            'title' => $request->title,
+            'user_id' => $user->id
+        ]);
+
+        flash('Thread successfully added!')->success();
+
+        return redirect()->route('home', compact('user', 'threads'));
+    }
+
+    /**
      * Show a specific threads posts.
      *
      * @return \Illuminate\Http\Response
@@ -50,12 +86,17 @@ class HomeController extends Controller
      *
      * @return Redirect
      */
-    public function newPost(Request $request)
+    public function saveNewPost(Request $request)
     {
         $user = Auth::user();
         $thread = Thread::find($request->thread_id);
 
         $posts = $thread->getPosts();
+
+        $this->validate($request, [
+            'content' => ['required'],
+            'thread_id' => ['required']
+        ]);
 
         Post::create([
             'content' => $request->content,
