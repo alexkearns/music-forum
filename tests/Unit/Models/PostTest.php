@@ -15,7 +15,7 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->make();
 
-        $this->assertNotNull($post->conent);
+        $this->assertNotNull($post->content);
         $this->assertNotNull($post->thread_id);
         $this->assertNotNull($post->user_id);
     }

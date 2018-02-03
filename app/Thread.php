@@ -50,4 +50,14 @@ class Thread extends Model
     {
         return Post::where('thread_id', $this->id)->get();
     }
+
+    /**
+     * Get the most recent post.
+     *
+     * @return Post
+     */
+    public function getRecentPost()
+    {
+        return Post::where('thread_id', $this->id)->latest()->first();
+    }
 }
