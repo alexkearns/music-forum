@@ -32,7 +32,7 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Logged In Application Routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'auth.banned'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/thread/new', 'HomeController@showNewThreadForm')->name('showNewThreadForm');
     Route::post('/thread/new/save', 'HomeController@saveNewThread')->name('saveNewThread');
@@ -42,9 +42,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/thread/post/new', 'HomeController@saveNewPost')->name('saveNewPost');
     
     // Manage User Routes
-    Route::get('/manage', 'HomeController@manage')->name('manage');
+    Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {
+        Route::get('/', 'ManageUsersController@index')->name('manage-users');
+        Route::get('/{id}', 'ManageUsersController@single')->name('manage-user');
+        Route::post('/{id}/save', 'ManageUsersController@singleSave')->name('manage-user-action');
+    });
 });
-
 
 // Package Routes
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

@@ -108,14 +108,4 @@ class HomeController extends Controller
 
         return redirect()->route('thread', compact('user', 'thread', 'posts'));
     }
-
-    /**
-     * Show the manage user page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function manage()
-    {
-        return view('manage_users');
-    }
 }
