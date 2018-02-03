@@ -20,17 +20,17 @@
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
-
-                {{-- IF ROLE IS ADMIN --}}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('manage') }}">Manage users <span class="sr-only">(current)</span></a>
-                </li>
+                @can('manage-users')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('manage') }}">Manage users <span
+                                    class="sr-only">(current)</span></a>
+                    </li>
+                @endcan
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
