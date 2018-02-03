@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class ManageUsersController extends Controller
@@ -13,6 +14,6 @@ class ManageUsersController extends Controller
      */
     public function index()
     {
-        return view('manage_users');
+        return view('manage_users')->with('users', User::all()->except(\Auth::user()->id));
     }
 }
