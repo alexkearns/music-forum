@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Thread;
 
-class Thread extends Model
+class Post extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -14,25 +14,27 @@ class Thread extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'user_id', // User who created the thread.
+        'content',
+        'thread_id', // The thread that the post belongs to.
+        'user_id' // The user who created the post on the Thread.
     ];
 
     /**
-     * Rules for validating a Thread creation.
+     * Rules for validating a Post creation.
      *
      * @return array
      */
     public static function rulesForCreating()
     {
         return [
-            'title' => ['required', 'max:64'],
+            'content' => ['required'],
+            'thread_id' => ['required'],
             'user_id' => ['required'],
         ];
     }
 
     /**
-     * Get user who created the Thread.
+     * Get User who created the post.
      *
      * @return User
      */
@@ -41,13 +43,13 @@ class Thread extends Model
         return User::find($this->user_id);
     }
 
-     /**
-     * Get the posts for the thread
+    /**
+     * Get Thread the post belongs to.
      *
-     * @return Post[]
+     * @return User
      */
-    public function getPosts()
+    public function getThread()
     {
-        return Post::where('thread_id', $this->id)->get();
+        return Thread::find($this->thread_id);
     }
 }
