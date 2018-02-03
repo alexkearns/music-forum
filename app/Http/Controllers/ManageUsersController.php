@@ -16,4 +16,9 @@ class ManageUsersController extends Controller
     {
         return view('manage_users')->with('users', User::all()->except(\Auth::user()->id));
     }
+
+    public function single($id)
+    {
+        return view('manage_users_single')->with('user', User::findOrFail($id));
+    }
 }

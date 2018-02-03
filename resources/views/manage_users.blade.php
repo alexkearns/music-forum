@@ -10,7 +10,7 @@
         <div class="col-12">
             <div class="list-group mt-4 mb-5">
                 @foreach($users as $user)
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a href="{{ route('manage-user', $user->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h6 class="mb-1">{{ $user->name }}</h6>
                             <div>
