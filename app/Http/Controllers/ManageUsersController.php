@@ -34,6 +34,7 @@ class ManageUsersController extends Controller
         $user->banned = $ban;
         $user->save();
 
+        flash('User updated!')->success();
         return redirect()->back();
     }
 }

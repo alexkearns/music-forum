@@ -4,7 +4,7 @@
     <main role="main" class="container">
 
         <div class="mb-4">
-            <h1>Manage {{ $user->name }}</h1>
+            <h1><a href={{ route('manage-users') }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a> Manage {{ $user->name }}</h1>
             <hr/>
         </div>
 
