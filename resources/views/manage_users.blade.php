@@ -16,6 +16,7 @@
                             <div>
                                 @if($user->isA('admin'))<span class="badge badge-info">Admin</span>@endif
                                 @if($user->isA('moderator'))<span class="badge badge-info">Moderator</span>@endif
+                                @if($user->banned)<span class="badge badge-danger">Banned</span>@endif
                             </div>
                         </div>
                         <small>{{ $user->email }}</small>

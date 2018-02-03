@@ -32,7 +32,7 @@ $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Logged In Application Routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'auth.banned'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/thread/new', 'HomeController@showNewThreadForm')->name('showNewThreadForm');
     Route::post('/thread/new/save', 'HomeController@saveNewThread')->name('saveNewThread');

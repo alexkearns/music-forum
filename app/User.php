@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'banned'
     ];
 
     /**
@@ -75,5 +75,23 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    /**
+     * Ban the user
+     */
+    public function ban()
+    {
+        $this->banned = true;
+        $this->save();
+    }
+
+    /**
+     * Reinstate the user
+     */
+    public function reinstate()
+    {
+        $this->banned = false;
+        $this->save();
     }
 }
