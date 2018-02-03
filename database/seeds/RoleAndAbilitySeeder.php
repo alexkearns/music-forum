@@ -29,8 +29,13 @@ class RoleAndAbilitySeeder extends Seeder
         ]);
 
         $ban = Bouncer::ability()->create([
-            'name' => 'ban-users',
-            'title' => 'Ban users',
+            'name' => 'ban-user',
+            'title' => 'Ban user',
+        ]);
+
+        $assignAdmin = Bouncer::ability()->create([
+            'name' => 'assign-admin',
+            'title' => 'Assign admin',
         ]);
 
         $assignModerator = Bouncer::ability()->create([
@@ -50,11 +55,13 @@ class RoleAndAbilitySeeder extends Seeder
 
         Bouncer::allow($admin)->to($manageUsers);
         Bouncer::allow($admin)->to($ban);
+        Bouncer::allow($admin)->to($assignAdmin);
         Bouncer::allow($admin)->to($assignModerator);
         Bouncer::allow($admin)->to($deleteAnyThread);
         Bouncer::allow($admin)->to($deleteAnyPost);
 
         Bouncer::allow($moderator)->to($manageUsers);
+        Bouncer::allow($admin)->to($ban);
         Bouncer::allow($moderator)->to($deleteAnyThread);
         Bouncer::allow($moderator)->to($deleteAnyPost);
 

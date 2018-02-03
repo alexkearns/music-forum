@@ -45,6 +45,7 @@ Route::middleware(['auth', 'auth.banned'])->group(function () {
     Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {
         Route::get('/', 'ManageUsersController@index')->name('manage-users');
         Route::get('/{id}', 'ManageUsersController@single')->name('manage-user');
+        Route::post('/{id}/save', 'ManageUsersController@singleSave')->name('manage-user-action');
     });
 });
 
