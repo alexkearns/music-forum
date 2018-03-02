@@ -28,8 +28,8 @@ class Post extends Model
     {
         return [
             'content' => ['required'],
-            'thread_id' => ['required'],
-            'user_id' => ['required'],
+            'thread_id' => ['sometimes', 'required'],
+            'user_id' => ['sometimes', 'required'],
         ];
     }
 

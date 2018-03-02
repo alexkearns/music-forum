@@ -36,6 +36,14 @@
                                         </a>
                                     @endif
                                 </p>
+
+                                <p class="card-text">
+                                    @if ($user->createdPost($post))
+                                        <a href="{{ url('/thread/post/edit/' . $post->id) }}" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>

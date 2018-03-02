@@ -110,7 +110,6 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $thread = Thread::find($request->thread_id);
-
         $posts = $thread->getPosts();
 
         $this->validate($request, [
@@ -126,6 +125,46 @@ class HomeController extends Controller
 
         flash('Post successfully added!')->success();
 
+        return redirect()->route('thread', compact('user', 'thread', 'posts'));
+    }
+
+    /**
+     * Show the edit post form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showEditPostForm(Post $post)
+    {
+        $user = Auth::user();
+
+        return view('edit_post', compact('user', 'post'));
+    }
+
+    /**
+     * Save a newly created post.
+     *
+     * @return Redirect
+     */
+    public function updatePost(Request $request)
+    {
+        $user = Auth::user();
+        $post = Post::find($request->post_id);
+
+        if (!$user->createdPost($post)) {
+            flash('Cannot Update Post')->error();
+
+            return redirect()->back();
+        }
+
+        $this->validate($request, Post::RulesForCreating());
+
+        $post->content = $request->content;
+        $post->save();
+
+        flash('Post Successfully Updated!')->success();
+
+        $thread = $post->getThread();
+        $posts = $thread->getPosts();
         return redirect()->route('thread', compact('user', 'thread', 'posts'));
     }
 

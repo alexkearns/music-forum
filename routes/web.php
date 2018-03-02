@@ -43,6 +43,8 @@ Route::middleware(['auth', 'auth.banned'])->group(function () {
     // Post Routes
     Route::get('/thread/{thread}', 'HomeController@showThreadPosts')->name('thread');
     Route::post('/thread/post/new', 'HomeController@saveNewPost')->name('saveNewPost');
+    Route::get('/thread/post/edit/{post}', 'HomeController@showEditPostForm')->name('showEditThreadForm');
+    Route::post('/thread/post/edit/save', 'HomeController@updatePost')->name('updatePost');
     Route::get('/thread/post/delete/{post}', 'HomeController@deletePost')->name('deletePost');
     
     // Manage User Routes
