@@ -2,7 +2,10 @@
 
 @section('content')
     <div>
-        <h1>Edit Thread</h1>
+        <h1>
+            <a href={{ route('thread', ['thread' => $post->getThread()->id]) }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
+            Edit Thread
+        </h1>
 
         <form class="form-horizontal" role="form" method="POST" action="{{ route('updatePost') }}">
             {{ csrf_field() }}

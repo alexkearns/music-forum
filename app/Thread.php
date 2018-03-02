@@ -58,6 +58,6 @@ class Thread extends Model
      */
     public function getRecentPost()
     {
-        return Post::where('thread_id', $this->id)->latest()->first();
+        return $this->hasMany('App\Post')->latest()->first();
     }
 }

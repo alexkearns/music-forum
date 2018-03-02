@@ -2,7 +2,10 @@
 
 @section('content')
     <div>
-        <h1>New Thread</h1>
+        <h1>
+            <a href={{ route('home') }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
+            New Thread
+        </h1>
 
         <form class="form-horizontal" role="form" method="POST" action="{{ route('saveNewThread') }}">
             {{ csrf_field() }}

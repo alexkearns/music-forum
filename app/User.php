@@ -53,7 +53,7 @@ class User extends Authenticatable
      */
     public function getPosts()
     {
-        return Post::where('user_id', $this->id)->get();
+        return $this->hasMany('App\Post');
     }
 
     /**
@@ -63,7 +63,7 @@ class User extends Authenticatable
      */
     public function getThreads()
     {
-        return Thread::where('user_id', $this->id)->get();
+        return $this->hasMany('App\Thread');
     }
 
     /**

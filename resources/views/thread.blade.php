@@ -29,21 +29,21 @@
                         </div>
                         <div class="col-md-1">
                             <div class="card-body">
-                                <p class="card-text">
-                                    @if ($user->can('delete-any-post') || ($user->createdPost($post)))
-                                        <a href="{{ url('/thread/post/delete/' . $post->id) }}" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    @endif
-                                </p>
-
-                                <p class="card-text">
-                                    @if ($user->createdPost($post))
+                                @if ($user->createdPost($post))
+                                    <p class="card-text">
                                         <a href="{{ url('/thread/post/edit/' . $post->id) }}" class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                    @endif
-                                </p>
+                                    </p>
+                                @endif
+
+                                @if ($user->can('delete-any-post') || ($user->createdPost($post)))
+                                    <p class="card-text">
+                                        <a href="{{ url('/thread/post/delete/' . $post->id) }}" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </p>
+                                @endif
                             </div>
                         </div>
                     </div>
