@@ -38,18 +38,18 @@ class Post extends Model
      *
      * @return User
      */
-    public function getUser()
+    public function user()
     {
-        return User::find($this->user_id);
+        return $this->belongsTo('App\User');
     }
 
     /**
      * Get Thread the post belongs to.
      *
-     * @return User
+     * @return Thread
      */
-    public function getThread()
+    public function thread()
     {
-        return Thread::find($this->thread_id);
+        return $this->belongsTo('App\Thread');
     }
 }

@@ -29,7 +29,7 @@ class ThreadTest extends TestCase
             'thread_id' => $thread->id,
         ]);
 
-        $this->assertEquals($thread->getPosts()->count(), 5);
+        $this->assertEquals($thread->posts->count(), 5);
     }
 
     /** @test */

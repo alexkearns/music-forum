@@ -35,13 +35,13 @@
                             </a>
                         </th>
                         <td>
-                            {{ $thread->getUser()->name}}<br>
+                            {{ $thread->user->name}}<br>
                             <small class="text-muted">{{ $thread->created_at }}</small>
                         </td>
-                        <td>{{ $thread->getPosts()->count() }}</td>
+                        <td>{{ $thread->posts->count() }}</td>
                         @if ($thread->getRecentPost())
                             <td>
-                                {{ $thread->getRecentPost()->getUser()->name }}<br>
+                                {{ $thread->getRecentPost()->user->name }}<br>
                                 <small class="text-muted">{{ $thread->getRecentPost()->created_at }}</small>
                             </td>
                         @else

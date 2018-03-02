@@ -32,7 +32,7 @@ class PostTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->assertEquals($post->getUser()->id, $user->id);
-        $this->assertEquals($post->getThread()->id, $thread->id);
+        $this->assertEquals($post->user->id, $user->id);
+        $this->assertEquals($post->thread->id, $thread->id);
     }
 }

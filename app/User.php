@@ -51,7 +51,7 @@ class User extends Authenticatable
      *
      * @return Post[]
      */
-    public function getPosts()
+    public function posts()
     {
         return $this->hasMany('App\Post');
     }
@@ -61,7 +61,7 @@ class User extends Authenticatable
      *
      * @return Thread[]
      */
-    public function getThreads()
+    public function threads()
     {
         return $this->hasMany('App\Thread');
     }
@@ -87,7 +87,7 @@ class User extends Authenticatable
      */
     public function createdThread(Thread $thread)
     {
-        if ($thread->user_id == $this->id && $thread->getPosts()->count() == 0) {
+        if ($thread->user_id == $this->id && $thread->posts->count() == 0) {
             return true;
         }
 

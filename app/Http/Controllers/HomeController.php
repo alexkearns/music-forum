@@ -96,7 +96,7 @@ class HomeController extends Controller
     public function showThreadPosts(Thread $thread)
     {
         $user = Auth::user();
-        $posts = $thread->getPosts();
+        $posts = $thread->posts;
 
         return view('thread', compact('user', 'thread', 'posts'));
     }
@@ -110,7 +110,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $thread = Thread::find($request->thread_id);
-        $posts = $thread->getPosts();
+        $posts = $thread->posts;
 
         $this->validate($request, [
             'content' => ['required'],
@@ -163,8 +163,8 @@ class HomeController extends Controller
 
         flash('Post Successfully Updated!')->success();
 
-        $thread = $post->getThread();
-        $posts = $thread->getPosts();
+        $thread = $post->thread;
+        $posts = $thread->posts;
         return redirect()->route('thread', compact('user', 'thread', 'posts'));
     }
 

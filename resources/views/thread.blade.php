@@ -14,8 +14,8 @@
                         <div class="col-md-3 bg-light">
                             <div class="card-body">
                                 <p class="card-text">
-                                    {{ $post->getUser()->name }}<br>
-                                    Posts: {{ $post->getUser()->getPosts()->count() }}<br>
+                                    {{ $post->user->name }}<br>
+                                    Posts: {{ $post->user->posts->count() }}<br>
                                     <small class="text-muted">{{ $post->created_at }}</small>
                                     <br>
                                     <small class="text-muted">#{{ $loop->iteration }}</small>
