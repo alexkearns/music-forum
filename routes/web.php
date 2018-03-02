@@ -34,12 +34,16 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 // Logged In Application Routes
 Route::middleware(['auth', 'auth.banned'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/thread/new', 'HomeController@showNewThreadForm')->name('showNewThreadForm');
-    Route::post('/thread/new/save', 'HomeController@saveNewThread')->name('saveNewThread');
     
     // Thread Routes
+    Route::get('/thread/new', 'HomeController@showNewThreadForm')->name('showNewThreadForm');
+    Route::post('/thread/new/save', 'HomeController@saveNewThread')->name('saveNewThread');
+    Route::get('/thread/delete/{thread}', 'HomeController@deleteThread')->name('deleteThread');
+
+    // Post Routes
     Route::get('/thread/{thread}', 'HomeController@showThreadPosts')->name('thread');
     Route::post('/thread/post/new', 'HomeController@saveNewPost')->name('saveNewPost');
+    Route::get('/thread/post/delete/{post}', 'HomeController@deletePost')->name('deletePost');
     
     // Manage User Routes
     Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {

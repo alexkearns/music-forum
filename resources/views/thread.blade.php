@@ -22,9 +22,20 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <div class="card-body">
                                 <p class="card-text">{{ $post->content }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="card-body">
+                                <p class="card-text">
+                                    @if ($user->can('delete-any-post') || ($user->createdPost($post)))
+                                        <a href="{{ url('/thread/post/delete/' . $post->id) }}" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>

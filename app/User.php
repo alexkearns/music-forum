@@ -5,9 +5,9 @@ namespace App;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 use App\Post;
 use App\Thread;
-use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 class User extends Authenticatable
 {
@@ -64,6 +64,34 @@ class User extends Authenticatable
     public function getThreads()
     {
         return Thread::where('user_id', $this->id)->get();
+    }
+
+    /**
+     * Get if the user created the post or not.
+     *
+     * @return Boolean
+     */
+    public function createdPost(Post $post)
+    {
+        if ($post->user_id == $this->id) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get if the user created the thread and if it can be deleted.
+     *
+     * @return Boolean
+     */
+    public function createdThread(Thread $thread)
+    {
+        if ($thread->user_id == $this->id && $thread->getPosts()->count() == 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

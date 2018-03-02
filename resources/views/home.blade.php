@@ -16,14 +16,17 @@
                 <th scope="col">Started By</th>
                 <th scope="col">Replies</th>
                 <th scope="col">Most Recent Post</th>
+                <th scope="col"></th>
             </tr>
             </thead>
 
             @foreach($threads as $thread)
                 <tbody>
                 <tr>
-                    <th scope="row"><a class="text-dark"
-                                       href="{{ route('thread', $thread->id)}}">{{ $thread->title }}</a></th>
+                    <th scope="row">
+                        <a class="text-dark" href="{{ route('thread', $thread->id)}}">{{ $thread->title }}
+                        </a>
+                    </th>
                     <td>
                         {{ $thread->getUser()->name}}<br>
                         <small class="text-muted">{{ $thread->created_at }}</small>
@@ -37,6 +40,13 @@
                     @else
                         <td>No Posts</td>
                     @endif
+                    <td>
+                        @if ($user->can('delete-any-thread') || ($user->createdThread($thread)))
+                            <a href="{{ url('/thread/delete/' . $thread->id) }}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        @endif
+                    </td>
                 </tr>
                 </tbody>
             @endforeach

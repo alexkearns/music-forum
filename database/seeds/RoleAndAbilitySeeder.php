@@ -53,15 +53,14 @@ class RoleAndAbilitySeeder extends Seeder
             'title' => 'Delete any post',
         ]);
 
-        Bouncer::allow($admin)->to($manageUsers);
-        Bouncer::allow($admin)->to($ban);
         Bouncer::allow($admin)->to($assignAdmin);
         Bouncer::allow($admin)->to($assignModerator);
+        Bouncer::allow($admin)->to($ban);
+        Bouncer::allow($admin)->to($manageUsers);
         Bouncer::allow($admin)->to($deleteAnyThread);
         Bouncer::allow($admin)->to($deleteAnyPost);
 
         Bouncer::allow($moderator)->to($manageUsers);
-        Bouncer::allow($admin)->to($ban);
         Bouncer::allow($moderator)->to($deleteAnyThread);
         Bouncer::allow($moderator)->to($deleteAnyPost);
 

@@ -69,6 +69,26 @@ class HomeController extends Controller
     }
 
     /**
+     * Delete a thread.
+     *
+     * @return Redirect - route back with flash message.
+     */
+    public function deleteThread(Thread $thread)
+    {
+        $user = Auth::user();
+
+        if ($user->can('delete-any-thread') || ($user->createdThread($thread))) {
+            $thread->delete();
+
+            flash('Thread Successfully Deleted!')->success();
+        } else {
+            flash('Thread Could Not Be Deleted!')->error();
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Show a specific threads posts.
      *
      * @return \Illuminate\Http\Response
@@ -107,5 +127,25 @@ class HomeController extends Controller
         flash('Post successfully added!')->success();
 
         return redirect()->route('thread', compact('user', 'thread', 'posts'));
+    }
+
+    /**
+     * Delete a post.
+     *
+     * @return Redirect - route back with flash message.
+     */
+    public function deletePost(Post $post)
+    {
+        $user = Auth::user();
+
+        if ($user->can('delete-any-post') || ($user->createdPost($post))) {
+            $post->delete();
+
+            flash('Post Successfully Deleted!')->success();
+        } else {
+            flash('Post Could Not Be Deleted!')->error();
+        }
+
+        return redirect()->back();
     }
 }
