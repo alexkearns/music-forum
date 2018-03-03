@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <h1>
+        <h1 class="mb-4">
             <a href={{ route('home') }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
             New Thread
         </h1>
