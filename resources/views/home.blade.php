@@ -56,8 +56,9 @@
                 </table>
             </div>
         @else
-            <p class="lead mb-1">There are currently no threads</p>
-            <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
+            <h1 class="mb-3">(︶︹︶)</h1>
+            <p class="lead mb-3">There are currently no threads</p>
+            <a class="btn btn-dark" href={{ route('showNewThreadForm') }} >
                 Create a new thread
             </a>
         @endif

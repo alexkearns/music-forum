@@ -7,49 +7,56 @@
             {{ $thread->title }}
         </h1>
 
-        @foreach($posts as $post)
-            <div class="card mb-3">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3 bg-light">
-                            <div class="card-body">
-                                <p class="card-text">
-                                    {{ $post->user->name }}<br>
-                                    Posts: {{ $post->user->posts->count() }}<br>
-                                    <small class="text-muted">{{ $post->created_at }}</small>
-                                    <br>
-                                    <small class="text-muted">#{{ $loop->iteration }}</small>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <p class="card-text">{{ $post->content }}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <div class="card-body">
-                                @if ($user->createdPost($post))
+        @if(!empty($posts) && $posts->count())
+            @foreach($posts as $post)
+                <div class="card mb-3">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3 bg-light">
+                                <div class="card-body">
                                     <p class="card-text">
-                                        <a href="{{ url('/thread/post/edit/' . $post->id) }}" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        {{ $post->user->name }}<br>
+                                        Posts: {{ $post->user->posts->count() }}<br>
+                                        <small class="text-muted">{{ $post->created_at }}</small>
+                                        <br>
+                                        <small class="text-muted">#{{ $loop->iteration }}</small>
                                     </p>
-                                @endif
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-text">{{ $post->content }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="card-body">
+                                    @if ($user->createdPost($post))
+                                        <p class="card-text">
+                                            <a href="{{ url('/thread/post/edit/' . $post->id) }}" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </p>
+                                    @endif
 
-                                @if ($user->can('delete-any-post') || ($user->createdPost($post)))
-                                    <p class="card-text">
-                                        <a href="{{ url('/thread/post/delete/' . $post->id) }}" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </p>
-                                @endif
+                                    @if ($user->can('delete-any-post') || ($user->createdPost($post)))
+                                        <p class="card-text">
+                                            <a href="{{ url('/thread/post/delete/' . $post->id) }}" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @else
+            <hr />
+            <h1 class="mb-3">(︶︹︶)</h1>
+            <p class="lead mb-3">There are currently no posts</p>
+            <hr />
+        @endif
 
         <form class="form-horizontal mt-5" role="form" method="POST" action="{{ route('saveNewPost') }}">
             {{ csrf_field() }}
