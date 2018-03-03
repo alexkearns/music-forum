@@ -41,8 +41,21 @@ class User extends Authenticatable
     {
         return [
             'email'     => ['required', 'email', 'unique:users,email'],
-            'password'  => ['sometimes', 'required', 'between:5,32'],
+            'password'  => ['required', 'between:5,32', 'pwned:150'],
             'name'      => ['required', 'between:2,32'],
+        ];
+    }
+
+    public static function messages()
+    {
+        return [
+            'email.required' => 'The email field is required.',
+            'email.email' => 'The email must be valid.',
+            'password.required'  => 'The password field is required.',
+            'password.between' => 'The password must be between 5 and 32 characters.',
+            'password.pwned' => 'This password has been leaked too many times',
+            'name.required' => 'The name field is required',
+            'name.between' => 'The name must be between 2 and 32 characters.',
         ];
     }
 
