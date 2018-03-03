@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Thread::class, function (Faker $faker) {
     return [
-        'title' => 'Test Thread',
-        'user_id' => 1,
+        'title' => $faker->realText(64),
+        'user_id' => App\User::inRandomOrder()->first()->id,
     ];
 });

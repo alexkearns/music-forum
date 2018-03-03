@@ -40,5 +40,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'name' => 'Sam Gibson',
         ]);
+
+        factory(App\User::class, 50)->create();
     }
 }

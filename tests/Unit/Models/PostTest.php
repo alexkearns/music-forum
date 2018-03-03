@@ -12,6 +12,13 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp() {
+        parent::setUp();
+        
+        factory(\App\User::class)->create();
+        factory(Thread::class)->create();
+    }
+
     /** @test */
     public function can_create_a_post_with_the_correct_properties()
     {
