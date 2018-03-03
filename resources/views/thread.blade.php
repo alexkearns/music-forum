@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <h1>
+        <h1 class="mb-4">
             <a href={{ route('home') }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
             {{ $thread->title }}
         </h1>
@@ -51,14 +51,14 @@
             </div>
         @endforeach
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('saveNewPost') }}">
+        <form class="form-horizontal mt-5" role="form" method="POST" action="{{ route('saveNewPost') }}">
             {{ csrf_field() }}
 
             <div class="row">
                 <div class="col-md-12">
                     <input type="hidden" value={{ $thread->id }} name="thread_id">
 
-                    <h3>New Post</h3>
+                    <h3 class="mb-4">New Post</h3>
 
                     <div id="content" class="form-group">
                         <textarea rows="5" class="form-control lesson-edit" name="content" required></textarea>

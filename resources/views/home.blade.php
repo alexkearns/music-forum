@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <h1>Welcome back {{ explode(' ',$user->name)[0] }}!</h1>
-        <p class="lead">Create threads and posts about the LCR below!</p>
+        <p class="lead mb-4">Create threads and posts about the LCR below!</p>
 
         @if(!empty($threads) && $threads->count())
             <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
