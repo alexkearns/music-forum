@@ -3,3 +3,16 @@
 main {
   margin-top: 3em;
 }
+
+.page-item.active .page-link{
+	background-color: #212529;
+  border-color: #212529;
+}
+
+.page-item a {
+	color: #212529;
+}
+
+.page-link:hover {
+	color: #212529;
+}

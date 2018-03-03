@@ -3,8 +3,8 @@
 @section('content')
     <div>
         <h1>
-            <a href={{ route('thread', ['thread' => $post->getThread()->id]) }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
-            Edit Thread
+            <a href={{ route('thread', ['thread' => $post->thread->id]) }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
+            Edit Post
         </h1>
 
         <form class="form-horizontal" role="form" method="POST" action="{{ route('updatePost') }}">
@@ -13,8 +13,7 @@
             <input type="hidden" name="post_id" value={{ $post->id}}>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Post</label>
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <textarea rows="5" class="form-control lesson-edit" name="content" required>{{ $post->content }}</textarea>
                 </div>
             </div>

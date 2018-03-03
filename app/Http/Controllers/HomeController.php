@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\Thread;
 use App\Post;
 
@@ -27,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $threads = Thread::all();
+        $threads = Thread::Latest()->paginate(15);
 
         return view('home', compact('user', 'threads'));
     }

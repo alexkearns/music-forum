@@ -5,26 +5,20 @@
         <h1>Welcome back {{ explode(' ',$user->name)[0] }}!</h1>
         <p class="lead">Create threads and posts about the LCR below!</p>
 
-        @if ($threads->count() == 0)
-            <h2>There are currently no threads.
-                <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
-                    Create a new thread
-                </a>
-            </h2> 
-        @else
+        @if(!empty($threads) && $threads->count())
             <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
                 <i class="fas fa-plus"></i> New Thread
             </a>
 
             <table class="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Thread Name</th>
-                    <th scope="col">Started By</th>
-                    <th scope="col">Replies</th>
-                    <th scope="col">Most Recent Post</th>
-                    <th scope="col"></th>
-                </tr>
+                    <tr>
+                        <th scope="col">Thread Name</th>
+                        <th scope="col">Started By</th>
+                        <th scope="col">Replies</th>
+                        <th scope="col">Most Recent Post</th>
+                        <th scope="col"></th>
+                    </tr>
                 </thead>
 
                 @foreach($threads as $thread)
@@ -58,6 +52,14 @@
                     </tbody>
                 @endforeach
             </table>
+        @else
+            <h2>There are currently no threads.
+                <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
+                    Create a new thread
+                </a>
+            </h2> 
         @endif
+
+        {{ $threads->render("pagination::bootstrap-4" )}}
     </div>
 @endsection
