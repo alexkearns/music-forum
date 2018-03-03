@@ -5,6 +5,8 @@
         <h1>Welcome back {{ explode(' ',$user->name)[0] }}!</h1>
         <p class="lead mb-4">Create threads and posts about the LCR below!</p>
 
+        <hr/>
+
         @if(!empty($threads) && $threads->count())
             <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
                 <i class="fas fa-plus"></i> New Thread
@@ -54,11 +56,10 @@
                 </table>
             </div>
         @else
-            <h2>There are currently no threads.
-                <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
-                    Create a new thread
-                </a>
-            </h2>
+            <p class="lead mb-1">There are currently no threads</p>
+            <a class="btn btn-dark mb-2" href={{ route('showNewThreadForm') }} >
+                Create a new thread
+            </a>
         @endif
 
         {{ $threads->render("pagination::bootstrap-4" )}}
