@@ -12,15 +12,15 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\User::class, 1)->create([
-            'email' => 'matty@uea.ac.uk',
-            'password' => bcrypt('password'),
-            'name' => 'Matty Williams',
-        ]);
-
-        factory(App\User::class, 1)->create([
             'email' => 'admin@uea.ac.uk',
             'password' => bcrypt('password'),
             'name' => 'Administrator',
+        ]);
+
+        factory(App\User::class, 1)->create([
+            'email' => 'matty@uea.ac.uk',
+            'password' => bcrypt('password'),
+            'name' => 'Matty Williams',
         ]);
 
         factory(App\User::class, 1)->create([
@@ -35,11 +35,12 @@ class UsersTableSeeder extends Seeder
             'name' => 'Chris Irvine',
         ]);
 
-
         factory(App\User::class, 1)->create([
             'email' => 'sam@uea.ac.uk',
             'password' => bcrypt('password'),
             'name' => 'Sam Gibson',
         ]);
+
+        factory(App\User::class, 50)->create();
     }
 }

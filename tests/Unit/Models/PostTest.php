@@ -12,6 +12,13 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp() {
+        parent::setUp();
+        
+        factory(\App\User::class)->create();
+        factory(Thread::class)->create();
+    }
+
     /** @test */
     public function can_create_a_post_with_the_correct_properties()
     {
@@ -32,7 +39,7 @@ class PostTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $this->assertEquals($post->getUser()->id, $user->id);
-        $this->assertEquals($post->getThread()->id, $thread->id);
+        $this->assertEquals($post->user->id, $user->id);
+        $this->assertEquals($post->thread->id, $thread->id);
     }
 }

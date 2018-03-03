@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Carbon\Carbon;
+use App\User;
 use App\Thread;
 use App\Post;
 
@@ -12,9 +13,15 @@ class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
+    public function setUp() {
+        parent::setUp();
+        
+        factory(User::class)->create();
+    }
+
     /** @test */
     public function can_create_a_thread_with_the_correct_properties()
-    {
+    {        
         $thread = factory(Thread::class)->make();
 
         $this->assertNotNull($thread->title);
@@ -29,7 +36,7 @@ class ThreadTest extends TestCase
             'thread_id' => $thread->id,
         ]);
 
-        $this->assertEquals($thread->getPosts()->count(), 5);
+        $this->assertEquals($thread->posts->count(), 5);
     }
 
     /** @test */

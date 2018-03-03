@@ -15,10 +15,13 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content');
+            $table->text('content');
             $table->integer('thread_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')->on('users');
 
             $table->foreign('thread_id')
                   ->references('id')->on('threads')

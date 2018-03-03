@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\Thread;
 use App\Post;
 
@@ -27,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $threads = Thread::all();
+        $threads = Thread::Latest()->paginate(15);
 
         return view('home', compact('user', 'threads'));
     }
@@ -69,6 +70,26 @@ class HomeController extends Controller
     }
 
     /**
+     * Delete a thread.
+     *
+     * @return Redirect - route back with flash message.
+     */
+    public function deleteThread(Thread $thread)
+    {
+        $user = Auth::user();
+
+        if ($user->can('delete-any-thread') || ($user->createdThread($thread))) {
+            $thread->delete();
+
+            flash('Thread Successfully Deleted!')->success();
+        } else {
+            flash('Thread Could Not Be Deleted!')->error();
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Show a specific threads posts.
      *
      * @return \Illuminate\Http\Response
@@ -76,7 +97,7 @@ class HomeController extends Controller
     public function showThreadPosts(Thread $thread)
     {
         $user = Auth::user();
-        $posts = $thread->getPosts();
+        $posts = $thread->posts;
 
         return view('thread', compact('user', 'thread', 'posts'));
     }
@@ -90,8 +111,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $thread = Thread::find($request->thread_id);
-
-        $posts = $thread->getPosts();
+        $posts = $thread->posts;
 
         $this->validate($request, [
             'content' => ['required'],
@@ -107,5 +127,65 @@ class HomeController extends Controller
         flash('Post successfully added!')->success();
 
         return redirect()->route('thread', compact('user', 'thread', 'posts'));
+    }
+
+    /**
+     * Show the edit post form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showEditPostForm(Post $post)
+    {
+        $user = Auth::user();
+
+        return view('edit_post', compact('user', 'post'));
+    }
+
+    /**
+     * Save a newly created post.
+     *
+     * @return Redirect
+     */
+    public function updatePost(Request $request)
+    {
+        $user = Auth::user();
+        $post = Post::find($request->post_id);
+
+        if (!$user->createdPost($post)) {
+            flash('Cannot Update Post')->error();
+
+            return redirect()->back();
+        }
+
+        $this->validate($request, Post::RulesForCreating());
+
+        $post->content = $request->content;
+        $post->save();
+
+        flash('Post Successfully Updated!')->success();
+
+        $thread = $post->thread;
+        $posts = $thread->posts;
+        return redirect()->route('thread', compact('user', 'thread', 'posts'));
+    }
+
+    /**
+     * Delete a post.
+     *
+     * @return Redirect - route back with flash message.
+     */
+    public function deletePost(Post $post)
+    {
+        $user = Auth::user();
+
+        if ($user->can('delete-any-post') || ($user->createdPost($post))) {
+            $post->delete();
+
+            flash('Post Successfully Deleted!')->success();
+        } else {
+            flash('Post Could Not Be Deleted!')->error();
+        }
+
+        return redirect()->back();
     }
 }

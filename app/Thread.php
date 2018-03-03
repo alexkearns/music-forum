@@ -36,9 +36,9 @@ class Thread extends Model
      *
      * @return User
      */
-    public function getUser()
+    public function user()
     {
-        return User::find($this->user_id);
+        return $this->belongsTo('App\User');
     }
 
      /**
@@ -46,9 +46,9 @@ class Thread extends Model
      *
      * @return Post[]
      */
-    public function getPosts()
+    public function posts()
     {
-        return Post::where('thread_id', $this->id)->get();
+        return $this->hasMany('App\Post');
     }
 
     /**
@@ -58,6 +58,6 @@ class Thread extends Model
      */
     public function getRecentPost()
     {
-        return Post::where('thread_id', $this->id)->latest()->first();
+        return $this->hasMany('App\Post')->latest()->first();
     }
 }
