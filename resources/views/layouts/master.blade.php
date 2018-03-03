@@ -48,8 +48,12 @@
 @endauth
 
 <main role="main" class="container">
-    @include('flash::message')
-    @yield('content')
+    <div class="row">
+        <div class="col-12">
+            @include('flash::message')
+            @yield('content')
+        </div>
+    </div>
 </main>
 
 <!-- Scripts -->
