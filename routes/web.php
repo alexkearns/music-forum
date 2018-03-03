@@ -28,7 +28,9 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Logged In Application Routes
 Route::middleware(['auth', 'auth.banned'])->group(function () {
-    Route::get('/{home?}', 'HomeController@index')->name('home')->where('home', '(home)?');
+
+    Route::get('/', 'HomeController@index')->name('root');
+    Route::get('/home', 'HomeController@index')->name('home');
 
     // Thread Routes
     Route::get('/thread/new', 'HomeController@showNewThreadForm')->name('showNewThreadForm');
