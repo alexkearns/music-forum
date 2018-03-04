@@ -12,9 +12,10 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
-        
+
         factory(\App\User::class)->create();
         factory(Thread::class)->create();
     }
