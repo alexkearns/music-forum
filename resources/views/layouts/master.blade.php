@@ -35,7 +35,10 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ \Auth::user()->name }}</a>
+
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="{{ route('profile', \Auth::user()->id) }}">Profile</a>
+                        <div class="dropdown-divider"></div>
                         <form id="logout" action="{{ route('logout') }}" method="POST">
                             {{ csrf_field() }}
                             <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit();">Logout</a>

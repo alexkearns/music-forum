@@ -1,6 +1,6 @@
 <?php
 
-use Faker\Generator as Faker;
+use Faker\Factory as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +13,14 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\User::class, function ($faker) {
+    $faker = Faker::create('en_GB');
+    $name = $faker->firstName . " " . $faker->lastName;
+
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'name' => $name,
+        'email' => str_replace(' ', '', $name) . rand(0, 99) . '@' . $faker->freeEmailDomain,
+        'password' => bcrypt($faker->password),
         'remember_token' => str_random(10),
     ];
 });

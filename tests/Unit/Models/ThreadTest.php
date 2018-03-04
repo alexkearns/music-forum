@@ -13,15 +13,16 @@ class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp() {
+    public function setUp()
+    {
         parent::setUp();
-        
+
         factory(User::class)->create();
     }
 
     /** @test */
     public function can_create_a_thread_with_the_correct_properties()
-    {        
+    {
         $thread = factory(Thread::class)->make();
 
         $this->assertNotNull($thread->title);

@@ -31,23 +31,25 @@
                                 </a>
                             </th>
                             <td>
-                                {{ $thread->user->name}}<br>
-                                <small class="text-muted">{{ $thread->created_at }}</small>
+                                <a href="{{ route('profile', $thread->user->id) }}"> {{ $thread->user->name }}</a><br>
+                                <small class="text-muted">
+                                    {{ Carbon\Carbon::parse($thread->created_at)->format('d-m-Y h:m') }}
+                                </small>
                             </td>
                             <td>{{ $thread->posts->count() }}</td>
                             @if ($thread->getRecentPost())
                                 <td>
-                                    {{ $thread->getRecentPost()->user->name }}<br>
-                                    <small class="text-muted">{{ $thread->getRecentPost()->created_at }}</small>
+                                    <a href="{{ route('profile', $thread->getRecentPost()->user->id) }}"> {{ $thread->getRecentPost()->user->name }}</a><br>
+                                    <small class="text-muted">
+                                        {{ Carbon\Carbon::parse($thread->getRecentPost()->created_at)->format('d-m-Y h:m') }}
+                                    </small>
                                 </td>
                             @else
                                 <td>No Posts</td>
                             @endif
                             <td>
                                 @if ($user->can('delete-any-thread') || ($user->createdThread($thread)))
-                                    <a href="{{ url('/thread/delete/' . $thread->id) }}" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    <button onclick="warningAlert('thread', '{{ url('/thread/delete/' . $thread->id) }}');" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i>
                                 @endif
                             </td>
                         </tr>
