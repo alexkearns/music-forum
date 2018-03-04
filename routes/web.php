@@ -28,7 +28,6 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Logged In Application Routes
 Route::middleware(['auth', 'auth.banned'])->group(function () {
-
     Route::get('/', 'HomeController@index')->name('root');
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -43,6 +42,9 @@ Route::middleware(['auth', 'auth.banned'])->group(function () {
     Route::get('/thread/post/edit/{post}', 'HomeController@showEditPostForm')->name('showEditThreadForm');
     Route::post('/thread/post/edit/save', 'HomeController@updatePost')->name('updatePost');
     Route::get('/thread/post/delete/{post}', 'HomeController@deletePost')->name('deletePost');
+
+    // Profile Routes
+    Route::get('/profile/{profile}', 'ProfileController@index')->name('profile');
 
     // Manage User Routes
     Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {

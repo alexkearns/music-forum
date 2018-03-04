@@ -6,6 +6,7 @@ use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 use App\Post;
 use App\Thread;
 
@@ -134,5 +135,20 @@ class User extends Authenticatable
     {
         $this->banned = false;
         $this->save();
+    }
+
+    /**
+     * Get the users role in a readable form.
+     * @return [String] role
+     */
+    public function role()
+    {
+        if (Bouncer::is($this)->a('admin')) {
+            return 'Administrator';
+        } elseif (Bouncer::is($this)->a('moderator')) {
+            return 'Moderator';
+        } else {
+            return 'Standard User';
+        }
     }
 }
