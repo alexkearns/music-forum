@@ -49,9 +49,7 @@
                             @endif
                             <td>
                                 @if ($user->can('delete-any-thread') || ($user->createdThread($thread)))
-                                    <a href="{{ url('/thread/delete/' . $thread->id) }}" class="btn btn-sm btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
+                                    <button onclick="warningAlert('thread', '{{ url('/thread/delete/' . $thread->id) }}');" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i>
                                 @endif
                             </td>
                         </tr>

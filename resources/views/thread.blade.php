@@ -37,12 +37,10 @@
                                             </a>
                                         </p>
                                     @endif
-
                                     @if ($user->can('delete-any-post') || ($user->createdPost($post)))
                                         <p class="card-text">
-                                            <a href="{{ url('/thread/post/delete/' . $post->id) }}" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                            <button onclick="warningAlert('post', '{{ url('/thread/post/delete/' . $post->id) }}');" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i>
+                                            </button>
                                         </p>
                                     @endif
                                 </div>
