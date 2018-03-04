@@ -39,7 +39,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        if (!$this->app->environment('production')) {
+            $this->mapDevRoutes();
+        }
     }
 
     /**
@@ -69,5 +71,11 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapDevRoutes()
+    {
+        // Package Routes
+        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     }
 }
