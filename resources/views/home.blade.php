@@ -31,13 +31,13 @@
                                 </a>
                             </th>
                             <td>
-                                {{ $thread->user->name}}<br>
+                                <a href="{{ route('profile', $thread->user->id) }}"> {{ $thread->user->name }}</a><br>
                                 <small class="text-muted">{{ $thread->created_at }}</small>
                             </td>
                             <td>{{ $thread->posts->count() }}</td>
                             @if ($thread->getRecentPost())
                                 <td>
-                                    {{ $thread->getRecentPost()->user->name }}<br>
+                                    <a href="{{ route('profile', $thread->getRecentPost()->user->id) }}"> {{ $thread->getRecentPost()->user->name }}</a><br>
                                     <small class="text-muted">{{ $thread->getRecentPost()->created_at }}</small>
                                 </td>
                             @else
