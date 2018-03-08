@@ -137,6 +137,12 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
+        if (!$user->createdPost($post)) {
+            flash('Cannot Edit Post')->error();
+
+            return redirect()->back();
+        }
+
         return view('edit_post', compact('user', 'post'));
     }
 

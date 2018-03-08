@@ -53,6 +53,3 @@ Route::middleware(['auth', 'auth.banned'])->group(function () {
         Route::post('/{id}/save', 'ManageUsersController@singleSave')->name('manage-user-action');
     });
 });
-
-// Package Routes
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

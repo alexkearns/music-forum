@@ -25,6 +25,9 @@ class ManageUsersController extends Controller
     public function singleSave($id, Request $request)
     {
         $user = User::findOrFail($id);
+
+        /* If user has permission to do the task, take the value from the request, if not revert to the user
+         * being edited's current role. */
         $admin = \Auth::user()->can('assign-admin') ? $request->filled('admin') : $user->isA('admin');
         $mod = \Auth::user()->can('assign-moderator') ? $request->filled('mod') : $user->isA('moderator');
         $ban = \Auth::user()->can('ban-user') ? $request->filled('ban') : $user->banned;
