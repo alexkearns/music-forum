@@ -170,7 +170,7 @@ return [
 
         'img-src' => [
             'allow' => [
-                //
+                'https://zoneofnonbeing.files.wordpress.com',
             ],
 
             'types' => [
