@@ -50,7 +50,7 @@ return [
      * Available Value: '1', '0', '1; mode=block'
      */
 
-    'x-xss-protection' => '1; mode=block',
+    'x-xss-protection' => '1; mode=block;',
 
     /*
      * Referrer-Policy
@@ -114,11 +114,7 @@ return [
      * Note: custom-csp does not support report-only.
      */
 
-    'custom-csp' => "default-src 'none'; " .
-    "script-src 'self' 'unsafe-inline' https://use.fontawesome.com/releases/v5.0.6/js/all.js; " .
-    "connect-src 'self'; " .
-    "img-src 'self'; " .
-    "style-src 'self' 'unsafe-inline';",
+    'custom-csp' => null,
 
     'csp' => [
         'report-only' => false,
@@ -135,7 +131,7 @@ return [
         ],
 
         'default-src' => [
-            //
+            'none'
         ],
 
         'child-src' => [
@@ -183,7 +179,7 @@ return [
 
             'self' => true,
 
-            'data' => false,
+            'data' => true,
         ],
 
         /*
