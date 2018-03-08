@@ -15,7 +15,7 @@
                             <div class="col-md-3 bg-light">
                                 <div class="card-body">
                                     <p class="card-text">
-                                        {{ $post->user->name }}<br>
+                                        <a href="{{ route('profile', $post->user->id) }}"> {{ $post->user->name }}</a><br>
                                         Posts: {{ $post->user->posts->count() }}<br>
                                         <small class="text-muted">{{ $post->created_at }}</small>
                                         <br>
