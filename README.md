@@ -1,5 +1,7 @@
 # MusicForum
 
+[![header_security A+](https://img.shields.io/badge/header_security-A+-green.svg)](https://schd.io/5NKy)
+
 A fictional music forum written in PHP, focusing on web security.
 
 ## Setup
