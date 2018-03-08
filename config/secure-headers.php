@@ -114,11 +114,11 @@ return [
      * Note: custom-csp does not support report-only.
      */
 
-    'custom-csp' => "default-src 'none';
-    script-src 'self' 'unsafe-inline' https://use.fontawesome.com/releases/v5.0.6/js/all.js;
-    connect-src 'self';
-    img-src 'self';
-    style-src 'self' 'unsafe-inline';",
+    'custom-csp' => "default-src 'none'; " .
+    "script-src 'self' 'unsafe-inline' https://use.fontawesome.com/releases/v5.0.6/js/all.js; " .
+    "connect-src 'self'; " .
+    "img-src 'self'; " .
+    "style-src 'self' 'unsafe-inline';",
 
     'csp' => [
         'report-only' => false,
