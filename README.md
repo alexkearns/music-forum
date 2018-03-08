@@ -14,3 +14,7 @@ A fictional music forum written in PHP, focusing on web security.
 ## Logs
 
 [Laravel Log Viewer](https://github.com/rap2hpoutre/laravel-log-viewer) can be accessed at myApp/logs to view a more readable version of the laravel log.
+
+## Security
+
+[Header Testing](https://schd.io/5NKy)
