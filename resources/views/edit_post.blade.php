@@ -3,11 +3,7 @@
 @section('content')
     <div>
         <h1 class="mb-4">
-            <a href={{ route('thread', ['thread' => $post->thread->id]) }} ><i class="fas fa-arrow-alt<div class="form-group row">
-                <div class="col-sm-12">
-                    <textarea rows="5" class="form-control lesson-edit" name="content" required>{{ $post->content }}</textarea>
-                </div>
-            </div>-circle-left text-dark"></i></a>
+            <a href={{ route('thread', ['thread' => $post->thread->id]) }} ><i class="fas fa-arrow-alt-circle-left text-dark"></i></a>
             Edit Post
         </h1>
 
