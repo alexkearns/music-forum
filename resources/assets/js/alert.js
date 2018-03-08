@@ -6,20 +6,24 @@ const swal = require('sweetalert2');
  * @param  type - what is being deleted, thread or post.
  * @param  url - route to delete item.
  */
-window.warningAlert = function(type, url) {
+window.warningAlert = function(url) {
 	swal({
 		title: 'Are you sure?',
-		text: 'This ' + type + ' will be gone forever!',
+		text: 'This will be gone forever!',
 		type: 'warning',
 		showCancelButton: true,
 		confirmButtonText: 'Yes, delete it!',
 		cancelButtonText: 'No, keep it'
 	}).then(result => {
 		if (result.value) {
-			swal('Deleted!', 'Your ' + type + ' has been deleted.', 'success');
+			swal('Deleted!', 'This has been deleted.', 'success');
 			window.location.href = url;
 		} else if (result.dismiss === swal.DismissReason.cancel) {
-			swal('Cancelled', 'Your ' + type + ' is safe :)', 'error');
+			swal('Cancelled', 'This is safe :)', 'error');
 		}
 	});
 };
+
+$("button.sa-delete").click(function(e) {
+    warningAlert(e.currentTarget.value);
+});

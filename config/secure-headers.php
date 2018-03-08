@@ -153,14 +153,14 @@ return [
 
             'self' => true,
 
-            'unsafe-inline' => true,
+            'unsafe-inline' => false,
 
             'unsafe-eval' => false,
         ],
 
         'style-src' => [
             'allow' => [
-                //
+                'https://fonts.googleapis.com/',
             ],
 
             'self' => true,
@@ -189,7 +189,9 @@ return [
          */
 
         'font-src' => [
-            //
+            'allow' => [
+                'https://fonts.gstatic.com',
+            ],
         ],
 
         'connect-src' => [
