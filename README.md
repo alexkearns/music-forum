@@ -19,4 +19,23 @@ A fictional music forum written in PHP, focusing on web security.
 
 ## Security
 
-[Header Testing](https://schd.io/5NKy)
+### Implementation
+
+- [Pwnded Password Validation](https://github.com/valorin/pwned-validator) that doesn't allow a user to use a password that has been leaked a certain number of times.
+- [Acesss Control](https://github.com/JosephSilber/bouncer) that gives users roles and permissions.
+- [Header Configuration](https://github.com/BePsvPT/secure-headers) to modify headers and ensure no vulnerabilities.
+- Hide some headers, e.g. server.
+- GitHub dependency graphs - shows vulnerably dependecies.
+- [Bug Snag](https://www.bugsnag.com/) to effectively log production errors, allowing easy fixes.
+
+### Testing
+
+The reports for security testing can be found [here](https://github.com/alexkearns/music-forum/tree/master/docs)
+
+- PHP Unit Testing
+- Default Laravel Auth
+- [Header Testing](https://schd.io/5NKy) to identify weaknesses in header configuation.
+- [SSL Testing](https://www.ssllabs.com/) to examine server setup and find vulnerabilities.
+- [OpenVAS](http://www.openvas.org/) to scan live site and detect vulnerabilities and provide sollutions.
+- [OWASP Zap](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) to automatically find security vulnerabilities while browsing.
+
