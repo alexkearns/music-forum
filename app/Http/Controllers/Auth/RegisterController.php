@@ -47,7 +47,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, User::rulesForCreating(), User::messages());
+        $rules = User::rulesForCreating();
+
+        // Can only do google recaptcha in production.
+        if (config('app.env') == 'production') {
+            $rules = array_merge($rules, ['g-recaptcha-response' => 'required|captcha']);
+        }
+
+        return Validator::make($data, $rules, User::messages());
     }
 
     /**

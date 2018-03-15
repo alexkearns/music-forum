@@ -17,7 +17,7 @@
         @if ($errors->any())
             <div class="alert alert-danger" role="alert">
                 @foreach ($errors->all() as $error)
-                    <small>{{ $error }}</small>
+                    <small>{{ $error }}</small><br />
                 @endforeach
             </div>
         @endif
@@ -39,6 +39,18 @@
             <label for="password">Password</label>
         </div>
 
+        @if (config('app.env') == 'production')
+            <div class="form-label-group">
+                {!! NoCaptcha::display() !!}
+            </div>
+        @endif
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
+@endsection
+
+@section('scripts')
+    @if (config('app.env') == 'production')
+        {!! NoCaptcha::renderJs() !!}
+    @endif
 @endsection

@@ -140,7 +140,9 @@ return [
 
         'script-src' => [
             'allow' => [
-                'https://use.fontawesome.com/releases/v5.0.6/js/all.js'
+                'https://use.fontawesome.com/releases/v5.0.6/js/all.js',
+                'https://www.google.com/recaptcha/api.js',
+                'https://www.gstatic.com/recaptcha/api2/v1520836262157/recaptcha__en.js'
             ],
 
             'hashes' => [
@@ -192,6 +194,12 @@ return [
             'allow' => [
                 'https://fonts.gstatic.com',
             ],
+        ],
+
+        'frame-src' => [
+            'allow' => [
+                'https://www.google.com/'
+            ]
         ],
 
         'connect-src' => [

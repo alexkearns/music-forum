@@ -21,6 +21,8 @@ A fictional music forum written in PHP, focusing on web security.
 
 ### Implementation
 
+- Default Laravel Auth
+- [reCaptcha](https://github.com/anhskohbo/no-captcha) by google to prevent bots brute forcing application.
 - [Pwnded Password Validation](https://github.com/valorin/pwned-validator) that doesn't allow a user to use a password that has been leaked a certain number of times.
 - [Acesss Control](https://github.com/JosephSilber/bouncer) that gives users roles and permissions.
 - [Header Configuration](https://github.com/BePsvPT/secure-headers) to modify headers and ensure no vulnerabilities.
@@ -33,7 +35,6 @@ A fictional music forum written in PHP, focusing on web security.
 The reports for security testing can be found [here](https://github.com/alexkearns/music-forum/tree/master/docs)
 
 - PHP Unit Testing
-- Default Laravel Auth
 - [Header Testing](https://schd.io/5NKy) to identify weaknesses in header configuation.
 - [SSL Testing](https://www.ssllabs.com/) to examine server setup and find vulnerabilities.
 - [OpenVAS](http://www.openvas.org/) to scan live site and detect vulnerabilities and provide sollutions.

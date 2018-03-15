@@ -39,9 +39,10 @@
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{{ route('profile', \Auth::user()->id) }}">Profile</a>
                         <div class="dropdown-divider"></div>
+
                         <form id="logout" action="{{ route('logout') }}" method="POST">
                             {{ csrf_field() }}
-                            <a class="dropdown-item" href="#" onclick="document.getElementById('logout').submit();">Logout</a>
+                            <input class="dropdown-item" type="submit" style="cursor: pointer;"onclick="document.getElementById('logout').submit();" value="Logout" />
                         </form>
                     </div>
                 </li>

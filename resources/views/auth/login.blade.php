@@ -14,10 +14,18 @@
             <h3>Log In</h1>
         </div>
 
-        @if ($errors->has('email'))
+        @if ($errors->any())
             <div class="alert alert-danger" role="alert">
-                <small>{{ $errors->first('email') }}</small>
+                @foreach ($errors->all() as $error)
+                    <small>{{ $error }}</small><br />
+                @endforeach
             </div>
+        @endif
+
+        @if ($errors->has('g-recaptcha-response'))
+            <span class="help-block">
+                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+            </span>
         @endif
 
         <div class="form-label-group">
@@ -37,8 +45,20 @@
             <label class="form-check-label" for="remember">Remember me</label>
         </div>
 
+        @if (config('app.env') == 'production')
+            <div class="form-label-group">
+                {!! NoCaptcha::display() !!}
+            </div>
+        @endif
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
     </form>
     <a class="mt-1 btn btn-sm btn-light btn-block" href="{{ route('password.request') }}">Forgot your password?</a>
     <a class="mt-4 btn btn-lg btn-secondary btn-block" href="{{ route('register') }}">Haven't got an account?</a>
+@endsection
+
+@section('scripts')
+    @if (config('app.env') == 'production')
+        {!! NoCaptcha::renderJs() !!}
+    @endif
 @endsection
