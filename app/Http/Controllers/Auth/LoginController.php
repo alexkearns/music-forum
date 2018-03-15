@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -45,16 +46,16 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate($request, [
+        $rules = [
             'email' => 'required|string',
             'password' => 'required|string',
-        ]);
+        ];
 
         // Can only do google recaptcha in production.
         if (config('app.env') == 'production') {
-            $this->validate($request, [
-                'g-recaptcha-response' => 'required|captcha',
-            ]);
+            $rules = array_merge(User::rulesForCreating(), ['g-recaptcha-response' => 'required|captcha']);
         }
+
+        $this->validate($request, $rules);
     }
 }
