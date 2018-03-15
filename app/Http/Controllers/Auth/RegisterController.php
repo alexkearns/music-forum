@@ -51,7 +51,7 @@ class RegisterController extends Controller
 
         // Can only do google recaptcha in production.
         if (config('app.env') == 'production') {
-            $rules = array_merge(User::rulesForCreating(), ['g-recaptcha-response' => 'required|captcha']);
+            $rules = array_merge($rules, ['g-recaptcha-response' => 'required|captcha']);
         }
 
         return Validator::make($data, $rules, User::messages());
