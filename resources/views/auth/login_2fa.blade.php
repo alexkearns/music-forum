@@ -31,6 +31,6 @@
     </form>
     <form id="logout" action="{{ route('logout') }}" method="POST">
         {{ csrf_field() }}
-        <button class="btn btn-lg btn-danger btn-block" type="submit">Cancel 2FA</button>
+        <button class="btn btn-lg btn-danger btn-block" type="submit">Cancel</button>
     </form>
 @endsection
