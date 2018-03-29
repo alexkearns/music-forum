@@ -112,7 +112,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            '2fa_using' => array_key_exists('2fa', $data) ? true : false,
             '2fa_secret' => array_key_exists('2fa_secret', $data) ? $data['2fa_secret'] : null,
         ]);
     }
