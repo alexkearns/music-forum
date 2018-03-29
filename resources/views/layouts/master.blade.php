@@ -36,7 +36,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ \Auth::user()->name }}</a>
 
-                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{{ route('profile', \Auth::user()->id) }}">Profile</a>
                         <div class="dropdown-divider"></div>
 
