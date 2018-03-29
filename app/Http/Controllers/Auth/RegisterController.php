@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            '2fa_using' => $data['2fa'],
+            '2fa_using' => $data['2fa'] === 'on' ? true : false,
         ]);
     }
 }
