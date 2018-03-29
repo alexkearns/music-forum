@@ -49,7 +49,12 @@ Route::middleware(['auth', 'auth.banned', 'auth.2fa'])->group(function () {
     Route::get('/thread/post/delete/{post}', 'HomeController@deletePost')->name('deletePost');
 
     // Profile Routes
-    Route::get('/profile/{profile}', 'ProfileController@index')->name('profile');
+    Route::get('/profile/{profile}', 'ProfileController@index')
+        ->name('profile')
+        ->where(['profile' => '[0-9]+']);
+    Route::get('/profile/enable-2fa', 'ProfileController@enable2fa')->name('profile.enable2FA');
+    Route::get('/profile/complete-2fa', 'ProfileController@complete2fa')->name('profile.updateAfter2fa');
+    Route::get('/profile/disable-2fa', 'ProfileController@disable2fa')->name('profile.disable2FA');
 
     // Manage User Routes
     Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {

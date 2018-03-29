@@ -27,7 +27,7 @@
             <label for="one_time_password">2FA Code</label>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Log in</button>
+        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Verify</button>
     </form>
     <form id="logout" action="{{ route('logout') }}" method="POST">
         {{ csrf_field() }}
