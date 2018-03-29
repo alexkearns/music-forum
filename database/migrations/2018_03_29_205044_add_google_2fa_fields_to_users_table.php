@@ -27,8 +27,7 @@ class AddGoogle2faFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('2fa_using');
-            $table->dropColumn('2fa_secret');
+            $table->dropColumn(['2fa_using', '2fa_secret']);
         });
     }
 }

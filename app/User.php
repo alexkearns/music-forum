@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'banned', '2fa_using', '2fa_secret'
+        'name', 'email', 'password', 'banned', '2fa_using',
     ];
 
     /**
@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', '2fa_secret'
     ];
 
     /**
@@ -160,7 +160,7 @@ class User extends Authenticatable
      */
     public function set2faSecretAttribute($secret)
     {
-         $this->attributes['2fa_secret'] = encrypt($value);
+         $this->attributes['2fa_secret'] = encrypt($secret);
     }
 
     /**
@@ -171,6 +171,6 @@ class User extends Authenticatable
      */
     public function get2faSecretAttribute($secret)
     {
-        return decrypt($value);
+        return decrypt($secret);
     }
 }
