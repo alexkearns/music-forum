@@ -19,6 +19,8 @@ $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes
 $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 $this->post('register', 'Auth\RegisterController@register');
+Route::get('/complete-registration', 'Auth\RegisterController@finishRegistrationAfter2fa')
+    ->name('register.completeAfter2fa');
 
 // Password Reset Routes
 $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
