@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "anhskohbo/no-captcha": "^3.0",
+        "bacon/bacon-qr-code": "^1.0",
         "bepsvpt/secure-headers": "^4.1",
         "bugsnag/bugsnag-laravel": "^2.0",
         "doctrine/dbal": "^2.6",
@@ -14,6 +15,7 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "pragmarx/google2fa-laravel": "^0.2.0",
         "rap2hpoutre/laravel-log-viewer": "^0.11.0",
         "silber/bouncer": "v1.0.0-rc.1",
         "valorin/pwned-validator": "^1.0"
