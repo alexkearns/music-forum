@@ -51,18 +51,18 @@ return [
     /*
      * User's table column for google2fa secret
      */
-    'otp_secret_column' => 'google2fa_secret',
+    'otp_secret_column' => '2fa_secret',
 
     /*
      * One Time Password View
      */
-    'view' => 'google2fa.index',
+    'view' => 'auth.login_2fa',
 
     /*
      * One Time Password error message
      */
     'error_messages' => [
-        'wrong_otp' => "The 'One Time Password' typed was wrong.",
+        'wrong_otp' => "I'm afraid your secret code was wrong.",
     ],
 
     /*

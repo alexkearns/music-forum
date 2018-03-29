@@ -1,7 +1,14 @@
 <!-- Reference: https://getbootstrap.com/docs/4.0/examples/floating-labels/ -->
-@extends('layouts.master')
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ env('APP_NAME') }}</title>
 
-@section('styles')
+    <link href="{{url('css/app.css')}}" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <style>
         :root {
             --input-padding-x: .75rem;
@@ -84,18 +91,31 @@
             color: #777;
         }
     </style>
-@endsection
+</head>
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        @yield('card-content')
+<body>
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-12">
+            @include('flash::message')
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                @yield('card-content')
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+</main>
+
+<!-- Scripts -->
+<script src="{{url('js/app.js')}}"></script>
+@yield('scripts')
+</body>
+</html>
