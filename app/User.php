@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'banned'
+        'name', 'email', 'password', 'banned', '2fa_using', '2fa_secret'
     ];
 
     /**
@@ -150,5 +150,27 @@ class User extends Authenticatable
         } else {
             return 'Standard User';
         }
+    }
+
+    /**
+     * Enrypt the user's 2fa secret.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function set2faSecretAttribute($secret)
+    {
+         $this->attributes['2fa_secret'] = encrypt($value);
+    }
+
+    /**
+     * Decrypt the user's 2fa secret.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function get2faSecretAttribute($secret)
+    {
+        return decrypt($value);
     }
 }
