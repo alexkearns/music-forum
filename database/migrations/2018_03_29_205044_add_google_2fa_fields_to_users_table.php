@@ -14,7 +14,7 @@ class AddGoogle2faFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('2fa_using')->after('banned')->default('false');
+            $table->boolean('2fa_using')->after('banned')->default(false);
             $table->text('2fa_secret')->after('banned')->nullable();
         });
     }
