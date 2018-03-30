@@ -15,7 +15,9 @@
             --input-padding-y: .75rem;
         }
 
-        html,
+        html {
+            height: 100%
+        },
         body {
             height: 100%;
         }
@@ -30,7 +32,6 @@
             align-items: center;
             -webkit-box-pack: center;
             justify-content: center;
-            padding-top: 40px;
             padding-bottom: 40px;
             background-color: #f5f5f5;
         }
