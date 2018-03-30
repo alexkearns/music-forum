@@ -52,9 +52,9 @@ Route::middleware(['auth', 'auth.banned', 'auth.2fa'])->group(function () {
     Route::get('/profile/{profile}', 'ProfileController@index')
         ->name('profile')
         ->where(['profile' => '[0-9]+']);
-    Route::get('/profile/enable-2fa', 'ProfileController@enable2fa')->name('profile.enable2FA');
-    Route::get('/profile/complete-2fa', 'ProfileController@complete2fa')->name('profile.updateAfter2fa');
-    Route::get('/profile/disable-2fa', 'ProfileController@disable2fa')->name('profile.disable2FA');
+    Route::get('/profile/enable-2fa', 'TwoFactorController@enable2fa')->name('profile.enable2FA');
+    Route::get('/profile/complete-2fa', 'TwoFactorController@complete2fa')->name('profile.updateAfter2fa');
+    Route::get('/profile/disable-2fa', 'TwoFactorController@disable2fa')->name('profile.disable2FA');
 
     // Manage User Routes
     Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {
