@@ -39,6 +39,11 @@
             <label for="password">Password</label>
         </div>
 
+        <div class="form-check mb-3">
+            <input type="checkbox" id="2fa" name="2fa" class="form-check-input">
+            <label for="2fa" class="form-check-label">Use 2 Factor Authentication</label>
+        </div>
+
         @if (config('app.env') == 'production')
             <div class="form-label-group">
                 {!! NoCaptcha::display() !!}

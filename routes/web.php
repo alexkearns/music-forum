@@ -12,22 +12,27 @@
 */
 
 // Authentication Routes
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('login/2fa', function () {
+    return redirect(URL()->previous());
+})->name('2fa')->middleware('auth.2fa');
 
 // Registration Routes
-$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-$this->post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+Route::get('/complete-registration', 'Auth\RegisterController@finishRegistrationAfter2fa')
+    ->name('register.completeAfter2fa');
 
 // Password Reset Routes
-$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-$this->post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Logged In Application Routes
-Route::middleware(['auth', 'auth.banned'])->group(function () {
+Route::middleware(['auth', 'auth.banned', 'auth.2fa'])->group(function () {
     Route::get('/', 'HomeController@index')->name('root');
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -44,7 +49,12 @@ Route::middleware(['auth', 'auth.banned'])->group(function () {
     Route::get('/thread/post/delete/{post}', 'HomeController@deletePost')->name('deletePost');
 
     // Profile Routes
-    Route::get('/profile/{profile}', 'ProfileController@index')->name('profile');
+    Route::get('/profile/{profile}', 'ProfileController@index')
+        ->name('profile')
+        ->where(['profile' => '[0-9]+']);
+    Route::get('/profile/enable-2fa', 'TwoFactorController@enable2fa')->name('profile.enable2FA');
+    Route::get('/profile/complete-2fa', 'TwoFactorController@complete2fa')->name('profile.updateAfter2fa');
+    Route::get('/profile/disable-2fa', 'TwoFactorController@disable2fa')->name('profile.disable2FA');
 
     // Manage User Routes
     Route::middleware(['can:manage-users'])->prefix('/manage/users')->group(function () {

@@ -29,6 +29,7 @@ A fictional music forum written in PHP, focusing on web security.
 - Hide some headers, e.g. server.
 - GitHub dependency graphs - shows vulnerably dependecies.
 - [Bug Snag](https://www.bugsnag.com/) to effectively log production errors, allowing easy fixes.
+- Uses optional Google 2 Factor Authentication, this can be enabled at registration, as well as managed post-registration
 
 ### Testing
 
