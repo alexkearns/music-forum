@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Google2FA;
 
 class TwoFactorController extends Controller
 {

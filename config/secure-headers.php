@@ -142,7 +142,7 @@ return [
             'allow' => [
                 'https://use.fontawesome.com/releases/v5.0.6/js/all.js',
                 'https://www.google.com/recaptcha/api.js',
-                'https://www.gstatic.com/recaptcha/api2/v1520836262157/recaptcha__en.js'
+                'https://www.gstatic.com/recaptcha/'
             ],
 
             'hashes' => [
