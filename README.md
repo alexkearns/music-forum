@@ -22,6 +22,7 @@ A fictional music forum written in PHP, focusing on web security.
 ### Implementation
 
 - Default Laravel Auth
+- Prepared statements are used in Laravel applications to prevent SQL injections. Understanding for this is shown [here](https://github.com/alexkearns/music-forum/blob/develop/app/Http/Controllers/HomeController.php#L105-L155), where raw sql queries are used.
 - [reCaptcha](https://github.com/anhskohbo/no-captcha) by google to prevent bots brute forcing application.
 - [Pwnded Password Validation](https://github.com/valorin/pwned-validator) that doesn't allow a user to use a password that has been leaked a certain number of times.
 - [Acesss Control](https://github.com/JosephSilber/bouncer) that gives users roles and permissions.

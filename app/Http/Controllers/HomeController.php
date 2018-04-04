@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\Thread;
 use App\Post;
 
@@ -104,24 +105,49 @@ class HomeController extends Controller
     /**
      * Save a newly created post.
      *
+     * Raw SQL queries are used within this function to show understanding on
+     * how to prevent SQL injection, and how laravel does it across the rest
+     * of the application.
+     *
      * @return Redirect
      */
     public function saveNewPost(Request $request)
     {
         $user = Auth::user();
-        $thread = Thread::find($request->thread_id);
-        $posts = $thread->posts;
+
+        // $thread = Thread::find($request->thread_id);
+        $id = $request->thread_id;
+        $thread = DB::select(DB::raw(
+            "SELECT *
+            FROM threads
+            WHERE id = :id"
+        ), [$id]);
+        $thread = new Thread($thread);
+
+        // $posts = $thread->posts;
+        $thread_id = $thread->id;
+        $posts = DB::select(DB::raw(
+            "SELECT *
+            FROM posts
+            WHERE thread_id = :thread_id"
+        ), [$thread_id]);
 
         $this->validate($request, [
             'content' => ['required'],
             'thread_id' => ['required']
         ]);
 
-        Post::create([
-            'content' => $request->content,
-            'thread_id' => $request->thread_id,
-            'user_id' => $user->id
-        ]);
+        // Post::create([
+        //     'content' => $request->content,
+        //     'thread_id' => $request->thread_id,
+        //     'user_id' => $user->id
+        // ]);
+        DB::insert(
+            "insert into posts
+            (content, thread_id, user_id)
+            values (?, ?, ?)",
+            [$request->content, $request->thread_id, $user->id]
+        );
 
         flash('Post successfully added!')->success();
 
