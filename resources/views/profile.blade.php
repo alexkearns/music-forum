@@ -3,11 +3,12 @@
 @section('content')
     <div>
         <h1 class="mb-4">{{ $profile->name }}</h1>
-        <h3>{{ $profile->email }} </h3>
+        {!! \Auth::user()->id === $profile->id ? '<h3>' . $profile->email . '</h3>' : '' !!}
         <h4>{{ $profile->role() }}</h4>
         <h5>Joined on {{ Carbon\Carbon::parse($profile->created_at)->format('d-m-Y') }}</h5>
         <h5>Total Threads: {{ $profile->threads->count() }}</h5>
         <h5>Total Posts: {{ $profile->posts->count() }}</h5>
+
         @if(\Auth::user()->id === $profile->id)
             @if($profile->{'2fa_secret'})
                 <a href="{{route('profile.disable2FA')}}"><button class="btn btn-danger">Disable 2FA</button></a>
