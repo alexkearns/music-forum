@@ -27,7 +27,6 @@ class ProfileTest extends TestCase
             ->get(route('profile', $profile))
             ->assertStatus(200)
             ->assertSee($profile->name)
-            ->assertSee($profile->email)
             ->assertSee($profile->role());
     }
 }

@@ -21,6 +21,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    protected $maxAttempts = 5; // Number of login attempts before locked out of login.
+    protected $decayMinutes = 5; // Time user is locked out.
+
     /**
      * Where to redirect users after login.
      *
