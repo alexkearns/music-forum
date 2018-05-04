@@ -151,7 +151,7 @@ class HomeController extends Controller
 
         flash('Post successfully added!')->success();
 
-        return redirect()->route('thread', compact('user', 'thread', 'posts'));
+        return redirect()->back();
     }
 
     /**
