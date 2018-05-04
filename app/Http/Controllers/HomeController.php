@@ -96,7 +96,7 @@ class HomeController extends Controller
     public function showThreadPosts(Thread $thread)
     {
         $user = Auth::user();
-        $posts = $thread->posts;
+        $posts = $thread->posts()->paginate(10);
 
         return view('thread', compact('user', 'thread', 'posts'));
     }

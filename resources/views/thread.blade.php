@@ -18,8 +18,6 @@
                                         <a href="{{ route('profile', $post->user->id) }}"> {{ $post->user->name }}</a><br>
                                         Posts: {{ $post->user->posts->count() }}<br>
                                         <small class="text-muted">{{ $post->created_at }}</small>
-                                        <br>
-                                        <small class="text-muted">#{{ $loop->iteration }}</small>
                                     </p>
                                 </div>
                             </div>
@@ -55,7 +53,9 @@
             <p class="lead mb-3">There are currently no posts</p>
             <hr />
         @endif
-
+        <div class="mb-1 mt-1">
+            {{ $posts->render("pagination::bootstrap-4" )}}
+        </div>
         <form class="form-horizontal mt-5" role="form" method="POST" action="{{ route('saveNewPost') }}">
             {{ csrf_field() }}
 
