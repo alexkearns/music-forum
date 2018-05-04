@@ -66,7 +66,7 @@ class HomeController extends Controller
 
         flash('Thread successfully added!')->success();
 
-        return redirect()->route('home', compact('user', 'threads'));
+        return redirect()->route('home');
     }
 
     /**
