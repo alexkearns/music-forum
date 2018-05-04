@@ -50,8 +50,8 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $rules = [
-            'email' => 'required|string',
-            'password' => 'required|string',
+            'email' => 'required|string|between:5,32|email',
+            'password' => 'required|string|between:1,255',
         ];
 
         // Can only do google recaptcha in production.
