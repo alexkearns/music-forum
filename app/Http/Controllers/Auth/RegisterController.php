@@ -60,6 +60,7 @@ class RegisterController extends Controller
 
         $twoFa = app('pragmarx.google2fa');
         $data = $request->all();
+        unset($data['g-recaptcha-response']);
         $data["2fa_secret"] = $twoFa->generateSecretKey();
         $request->session()->flash('data', $data);
         $image = $twoFa->getQRCodeInline(
