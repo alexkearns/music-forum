@@ -21,11 +21,11 @@
     <hr />
 
     <div>
-    	<h4 class="mb-4 mt-4">Threads</h4>
+    	<h4 class="mb-4 mt-4">Recently Started Threads</h4>
 
         @if(!empty($profile->threads) && $profile->threads->count())
         	<div class="list-group">
-    	    	@foreach ($profile->threads as $thread)
+    	    	@foreach ($profile->threads()->paginate(5) as $thread)
     	    		<a class="list-group-item list-group-item-action" href="{{ route('thread', $thread->id)}}">{{ $thread->title }}</a><br />
     	    	@endforeach
         	</div>
@@ -35,11 +35,11 @@
     </div>
 
     <div>
-    	<h4 class="mb-4 mt-4">Posts</h4>
+    	<h4 class="mb-4 mt-4">Most Recent Posts</h4>
 
         @if(!empty($profile->posts) && $profile->posts->count())
         	<div class="list-group">
-    	    	@foreach ($profile->posts as $post)
+    	    	@foreach ($profile->posts()->paginate(5) as $post)
     	    		<a class="list-group-item list-group-item-action" href="{{ route('thread', $post->thread->id)}}">{{ $post->content }}</a><br />
     	    	@endforeach
         	</div>
