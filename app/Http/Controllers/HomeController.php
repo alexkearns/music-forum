@@ -53,9 +53,8 @@ class HomeController extends Controller
     public function saveNewThread(Request $request)
     {
         $user = Auth::user();
-        $threads = Thread::all();
 
-        $this->validate($request, [
+        $request->validate([
             'title' => ['required', 'max:64'],
         ]);
 
@@ -132,8 +131,8 @@ class HomeController extends Controller
             WHERE thread_id = :thread_id"
         ), [$thread_id]);
 
-        $this->validate($request, [
-            'content' => ['required'],
+        $request->validate([
+            'content' => ['required', 'max:2000'],
             'thread_id' => ['required']
         ]);
 
@@ -188,7 +187,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        $this->validate($request, Post::RulesForCreating());
+        $request->validate(Post::RulesForCreating());
 
         $post->content = $request->content;
         $post->save();
