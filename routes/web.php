@@ -14,7 +14,7 @@
 // Authentication Routes
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout')->middleware(['auth', 'auth.banned']);
+Route::post('logout', 'Auth\LoginController@logout')->name('logout')->middleware('auth');
 Route::post('login/2fa', function () {
     return redirect(URL()->previous());
 })->name('2fa')->middleware('auth.2fa');
