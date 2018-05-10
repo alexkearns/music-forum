@@ -1,17 +1,10 @@
 @extends('layouts.auth')
 
 @section('card-content')
-    <div class="text-center mb-4">
-        <h1>{{ config('app.name') }}
-            <br />
-            <small class="text-muted">Post messages on the LCR forum.</small>
-        </h1>
-    </div>
-    <hr/>
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="text-center mb-4">
-            <h3>Log In</h1>
+            <h3>Log In</h3>
         </div>
 
         @if ($errors->any())
