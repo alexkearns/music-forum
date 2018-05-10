@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
+use Mail;
+use App\Mail\UserInvite;
+use App\Invite;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -43,44 +47,45 @@ class RegisterController extends Controller
     }
 
     /**
-     * Register function overrides the function defined
-     * in the RegistersUsers trait, checks if the user wants
-     * to use 2FA and handles
-     * @param  Request $request The registration request
-     * @return Original register function if no 2FA, view to setup 2FA if not
+     * Create an invite for the user. They then need to click the email
+     * link to complete registration.
      */
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
-        //If the user does not want 2FA, send them to the original register function
-        if (!$request->has('2fa')) {
-            return $this->traitRegister($request);
-        }
+        $token = str_random();
+        $invite = Invite::create([
+            'token' => $token,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
 
-        $twoFa = app('pragmarx.google2fa');
-        $data = $request->all();
-        unset($data['g-recaptcha-response']);
-        $data["2fa_secret"] = $twoFa->generateSecretKey();
-        $request->session()->flash('data', $data);
-        $image = $twoFa->getQRCodeInline(
-            config('app.name'),
-            $data['email'],
-            $data['2fa_secret']
-        );
-        return view('auth.register_2fa', ['qrCode' => $image, 'secret' => $data['2fa_secret']]);
+        Mail::to($request->email)
+            ->send(new UserInvite($invite));
+
+        flash('Invite sent')->success();
+        return back();
     }
 
     /**
-     * A function to handle registration after the user
-     * has setup their 2FA
-     * @param  Request $request The request to merge the session data into
-     * @return Original register function
+     * Find the correct token, register the user, and log them in.
      */
-    public function finishRegistrationAfter2fa(Request $request)
+    public function completeRegister($token)
     {
-        $request->merge(session('data'));
-        return $this->traitRegister($request);
+        $invite = Invite::where('token', $token)->first();
+        $invite->delete();
+
+        $user = User::create([
+            'name' => $invite->name,
+            'email' => $invite->email,
+            'password' => $invite->password
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
     }
 
     /**
@@ -112,8 +117,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            '2fa_secret' => array_key_exists('2fa_secret', $data) ? $data['2fa_secret'] : null,
+            'password' => bcrypt($data['password'])
         ]);
     }
 }
