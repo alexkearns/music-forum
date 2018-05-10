@@ -1,17 +1,10 @@
 @extends('layouts.auth')
 
 @section('card-content')
-    <div class="text-center mb-4">
-        <h1>{{ config('app.name') }}
-            <br />
-            <small class="text-muted">Post messages on the LCR forum.</small>
-        </h1>
-    </div>
-    <hr/>
     <form method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
         <div class="text-center mb-4">
-            <h3>Register</h1>
+            <h3>Register</h3>
         </div>
 
         @if ($errors->any())
@@ -37,11 +30,6 @@
         <div class="form-label-group">
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
             <label for="password">Password</label>
-        </div>
-
-        <div class="form-check mb-3">
-            <input type="checkbox" id="2fa" name="2fa" class="form-check-input">
-            <label for="2fa" class="form-check-label">Use 2 Factor Authentication</label>
         </div>
 
         @if (config('app.env') == 'production')

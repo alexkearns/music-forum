@@ -1,17 +1,10 @@
 @extends('layouts.auth')
 
 @section('card-content')
-    <div class="text-center mb-4">
-        <h1>{{ config('app.name') }}
-            <br />
-            <small class="text-muted">Post messages on the LCR forum.</small>
-        </h1>
-    </div>
-    <hr/>
     <form method="POST" action="{{ route('2fa') }}">
         {{ csrf_field() }}
         <div class="text-center mb-4">
-            <h3>Enter the code from your 2FA here</h1>
+            <h3>Enter the code from your 2FA here</h3>
         </div>
 
         @if ($errors->any())

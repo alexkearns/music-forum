@@ -105,6 +105,13 @@
                     <div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                         <div class="card">
                             <div class="card-body">
+                                <div class="text-center mb-4">
+                                    <h1><a href="/">{{ config('app.name') }}</a>
+                                        <br />
+                                        <small class="text-muted">Post messages on the LCR forum.</small>
+                                    </h1>
+                                </div>
+                                <hr/>
                                 @yield('card-content')
                             </div>
                         </div>

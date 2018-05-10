@@ -22,8 +22,7 @@ Route::post('login/2fa', function () {
 // Registration Routes
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
-Route::get('/complete-registration', 'Auth\RegisterController@finishRegistrationAfter2fa')
-    ->name('register.completeAfter2fa');
+Route::get('register/invite/{token}', 'Auth\RegisterController@completeRegister')->name('completeRegister');
 
 // Password Reset Routes
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
