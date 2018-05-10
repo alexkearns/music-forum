@@ -15,7 +15,7 @@ class Thread extends Model
      */
     protected $fillable = [
         'title',
-        'user_id', // User who created the thread.
+        'user_id',
     ];
 
     /**
@@ -41,11 +41,11 @@ class Thread extends Model
         return $this->belongsTo('App\User');
     }
 
-     /**
-     * Get the posts for the thread
-     *
-     * @return Post[]
-     */
+    /**
+    * Get the posts for the thread
+    *
+    * @return Post[]
+    */
     public function posts()
     {
         return $this->hasMany('App\Post');

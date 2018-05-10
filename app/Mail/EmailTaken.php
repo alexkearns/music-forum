@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserInvite extends Mailable
+class EmailTaken extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +16,11 @@ class UserInvite extends Mailable
      *
      * @return void
      */
-    public function __construct($invite)
+    public function __construct()
     {
-        $this->invite = $invite;
+        //
     }
+
     /**
      * Build the message.
      *
@@ -27,7 +28,6 @@ class UserInvite extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user_invite')
-            ->with(['token' => $this->invite->token]);
+        return $this->markdown('emails.email_taken');
     }
 }

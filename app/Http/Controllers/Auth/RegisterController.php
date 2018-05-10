@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Auth;
 use Mail;
 use App\Mail\UserInvite;
+use App\Mail\EmailTaken;
 use App\Invite;
 use App\User;
 
@@ -54,18 +55,23 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        $token = str_random();
-        $invite = Invite::create([
-            'token' => $token,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+        if (User::where('email', $request->email)->first()) {
+            Mail::to($request->email)
+                ->send(new EmailTaken());
+        } else {
+            $token = str_random();
+            $invite = Invite::create([
+                'token' => $token,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password)
+            ]);
 
-        Mail::to($request->email)
-            ->send(new UserInvite($invite));
+            Mail::to($request->email)
+                ->send(new UserInvite($invite));
+        }
 
-        flash('Invite sent')->success();
+        flash('You will now recieve an email to setup your account.')->success();
         return back();
     }
 
@@ -96,28 +102,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $rules = User::rulesForCreating();
+        $rules = Invite::rulesForCreating();
 
         // Can only do google recaptcha in production.
         if (config('app.env') == 'production') {
             $rules = array_merge($rules, ['g-recaptcha-response' => 'required|captcha']);
         }
 
-        return Validator::make($data, $rules, User::messages());
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password'])
-        ]);
+        return Validator::make($data, $rules, Invite::messages());
     }
 }
