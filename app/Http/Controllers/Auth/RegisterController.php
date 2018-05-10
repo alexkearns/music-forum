@@ -56,12 +56,12 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         if (User::where('email', $request->email)->first()) {
-            // Send an email to the user if the email isn't taken.
+            // Send an email to the user if the email is already taken.
             Mail::to($request->email)
                 ->send(new EmailTaken());
         } else {
             // Send invite link to the users email.
-            $token = sha1(time());
+            $token = sha1(time() . $request->email);
             $invite = Invite::create([
                 'token' => $token,
                 'name' => $request->name,

@@ -7,9 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserInvite extends Mailable
+class UserInvite extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    protected $invite;
 
     /**
      * Create a new message instance.
@@ -29,5 +31,16 @@ class UserInvite extends Mailable
     {
         return $this->markdown('emails.user_invite')
             ->with(['token' => $this->invite->token]);
+    }
+
+    /**
+     * The job failed to process.
+     *
+     * @param  Exception  $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        \Log::info($exception->getMessage());
     }
 }

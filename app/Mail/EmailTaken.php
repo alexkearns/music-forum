@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EmailTaken extends Mailable
+class EmailTaken extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -29,5 +29,16 @@ class EmailTaken extends Mailable
     public function build()
     {
         return $this->markdown('emails.email_taken');
+    }
+
+    /**
+     * The job failed to process.
+     *
+     * @param  Exception  $exception
+     * @return void
+     */
+    public function failed(Exception $exception)
+    {
+        \Log::info($exception->getMessage());
     }
 }
