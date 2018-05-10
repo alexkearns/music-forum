@@ -13,11 +13,9 @@ A fictional music forum written in PHP, focusing on web security.
 - serve the site using your method of choice. ([Homestead](https://laravel.com/docs/5.5/homestead) can be used))
 - If needed, run ```npm install``` to install the javascript packages and use ```npm run dev``` to generate the js and scss assets.
 
-## Logs
-
-[Laravel Log Viewer](https://github.com/rap2hpoutre/laravel-log-viewer) can be accessed at myApp/logs to view a more readable version of the laravel log.
-
 ## Security
+
+### [Documentation](https://github.com/alexkearns/music-forum/tree/develop/docs/implementation.pdf)
 
 ### Implementation
 
@@ -34,7 +32,7 @@ A fictional music forum written in PHP, focusing on web security.
 
 ### Testing
 
-The reports for security testing can be found [here](https://github.com/alexkearns/music-forum/tree/master/docs)
+The reports for security testing can be found [here](https://github.com/alexkearns/music-forum/tree/develop/docs/security)
 
 - PHP Unit Testing
 - [Header Testing](https://schd.io/5NKy) to identify weaknesses in header configuation.
