@@ -10,9 +10,11 @@
             {{ session('status') }}
         </div>
     @endif
-    @if ($errors->has('email'))
-        <div class="alert alert-info">
-            {{ $errors->first('email') }}
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+                <small>{{ $error }}</small><br />
+            @endforeach
         </div>
     @endif
 
@@ -25,8 +27,19 @@
             <label for="email">Email address</label>
         </div>
 
+        @if (config('app.env') == 'production')
+            <div class="form-label-group">
+                {!! NoCaptcha::display() !!}
+            </div>
+        @endif
+
         <button type="submit" class="btn btn-block btn-primary">
             Send Password Reset Link
         </button>
     </form>
+@endsection
+@section('scripts')
+    @if (config('app.env') == 'production')
+        {!! NoCaptcha::renderJs() !!}
+    @endif
 @endsection

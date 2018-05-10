@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
             'name' => 'Alex Kearns',
         ]);
-        
+
         factory(App\User::class, 1)->create([
             'email' => 'chris@uea.ac.uk',
             'password' => bcrypt('password'),
@@ -39,6 +39,12 @@ class UsersTableSeeder extends Seeder
             'email' => 'sam@uea.ac.uk',
             'password' => bcrypt('password'),
             'name' => 'Sam Gibson',
+        ]);
+
+        factory(App\User::class, 1)->create([
+            'email' => '2YyjHUrjmq0W7TO@uea.ac.uk',
+            'password' => bcrypt('96GWyVqIrfhwGxX'),
+            'name' => 'Reset Password Catch-All',
         ]);
 
         factory(App\User::class, 50)->create();
