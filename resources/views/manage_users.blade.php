@@ -23,6 +23,7 @@
                     </a>
                 @endforeach
             </div>
+            {{ $users->render("pagination::bootstrap-4")}}
         </div>
     </div>
 @endsection

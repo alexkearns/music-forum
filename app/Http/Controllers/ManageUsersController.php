@@ -12,9 +12,20 @@ class ManageUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('manage_users')->with('users', User::all()->except(\Auth::user()->id));
+        $page = $request->get('page', 1);
+        $perPage = 10;
+
+        $users = User::orderBy('name')->get()->except(\Auth::user()->id);
+        $users = new \Illuminate\Pagination\LengthAwarePaginator(
+            $users->forPage($page, $perPage),
+            $users->count(),
+            $perPage,
+            $page
+        );
+        $users = $users->withPath('users');
+        return view('manage_users')->with('users', $users);
     }
 
     public function single($id)
