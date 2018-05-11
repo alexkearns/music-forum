@@ -15,12 +15,6 @@
             </div>
         @endif
 
-        @if ($errors->has('g-recaptcha-response'))
-            <span class="help-block">
-                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-            </span>
-        @endif
-
         <div class="form-label-group">
             <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
                    value="{{ old('email') }}" required autofocus>
